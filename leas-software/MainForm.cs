@@ -35,7 +35,7 @@ namespace leas_software
             sList = new List<Situation>();
             sList.Add(new Situation(0, "Vous vous tapez le doigt devant votre voisin."));
             sList.Add(new Situation(1, "Vous êtes dans le désert mais vous n'avez plus d'eau dans votre gourde."));
-            sList.Add(new Situation(2, "Vous avez oublié l'anniversaire de votre conjoint(e)."));
+            sList.Add(new Situation(2, "Vous avez oublié l'anniversaire de votre conjoint."));
 
             nbSituations = sList.Count;
             goToSituation(0);
