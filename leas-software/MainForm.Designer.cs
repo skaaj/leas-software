@@ -28,70 +28,103 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelSaisie = new System.Windows.Forms.Panel();
-            this.situationLabel = new System.Windows.Forms.Label();
-            this.nextButton = new System.Windows.Forms.Button();
-            this.prevButton = new System.Windows.Forms.Button();
-            this.panelSaisie.SuspendLayout();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.container = new System.Windows.Forms.Panel();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.nouvelleSaisieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acceuilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chargerUneSaisieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelSaisie
+            // toolStrip
             // 
-            this.panelSaisie.Controls.Add(this.prevButton);
-            this.panelSaisie.Controls.Add(this.nextButton);
-            this.panelSaisie.Controls.Add(this.situationLabel);
-            this.panelSaisie.Location = new System.Drawing.Point(0, 0);
-            this.panelSaisie.Name = "panelSaisie";
-            this.panelSaisie.Size = new System.Drawing.Size(285, 261);
-            this.panelSaisie.TabIndex = 0;
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDropDownButton1});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(584, 25);
+            this.toolStrip.TabIndex = 0;
+            this.toolStrip.Text = "toolStrip1";
             // 
-            // situationLabel
+            // container
             // 
-            this.situationLabel.Location = new System.Drawing.Point(4, 4);
-            this.situationLabel.Name = "situationLabel";
-            this.situationLabel.Size = new System.Drawing.Size(278, 222);
-            this.situationLabel.TabIndex = 0;
-            this.situationLabel.Text = "situationLabel";
+            this.container.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.container.Location = new System.Drawing.Point(0, 25);
+            this.container.Name = "container";
+            this.container.Size = new System.Drawing.Size(584, 336);
+            this.container.TabIndex = 1;
             // 
-            // nextButton
+            // toolStripDropDownButton1
             // 
-            this.nextButton.Location = new System.Drawing.Point(213, 235);
-            this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(71, 23);
-            this.nextButton.TabIndex = 1;
-            this.nextButton.Text = ">>";
-            this.nextButton.UseVisualStyleBackColor = true;
-            this.nextButton.Click += new System.EventHandler(this.onNextButtonClick);
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.acceuilToolStripMenuItem,
+            this.nouvelleSaisieToolStripMenuItem,
+            this.chargerUneSaisieToolStripMenuItem,
+            this.quitterToolStripMenuItem});
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(55, 22);
+            this.toolStripDropDownButton1.Text = "Fichier";
             // 
-            // prevButton
+            // nouvelleSaisieToolStripMenuItem
             // 
-            this.prevButton.Location = new System.Drawing.Point(3, 235);
-            this.prevButton.Name = "prevButton";
-            this.prevButton.Size = new System.Drawing.Size(71, 23);
-            this.prevButton.TabIndex = 2;
-            this.prevButton.Text = "<<";
-            this.prevButton.UseVisualStyleBackColor = true;
-            this.prevButton.Click += new System.EventHandler(this.onPrevButtonClick);
+            this.nouvelleSaisieToolStripMenuItem.Name = "nouvelleSaisieToolStripMenuItem";
+            this.nouvelleSaisieToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.nouvelleSaisieToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.nouvelleSaisieToolStripMenuItem.Text = "Nouvelle saisie";
+            this.nouvelleSaisieToolStripMenuItem.Click += new System.EventHandler(this.onClickNewUser);
+            // 
+            // acceuilToolStripMenuItem
+            // 
+            this.acceuilToolStripMenuItem.Name = "acceuilToolStripMenuItem";
+            this.acceuilToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.acceuilToolStripMenuItem.Text = "Accueil";
+            this.acceuilToolStripMenuItem.Click += new System.EventHandler(this.onClickHome);
+            // 
+            // quitterToolStripMenuItem
+            // 
+            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
+            this.quitterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.quitterToolStripMenuItem.Text = "Quitter";
+            this.quitterToolStripMenuItem.Click += new System.EventHandler(this.onClickExit);
+            // 
+            // chargerUneSaisieToolStripMenuItem
+            // 
+            this.chargerUneSaisieToolStripMenuItem.Name = "chargerUneSaisieToolStripMenuItem";
+            this.chargerUneSaisieToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.chargerUneSaisieToolStripMenuItem.Text = "Charger une saisie";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.panelSaisie);
+            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.container);
+            this.Controls.Add(this.toolStrip);
             this.Name = "MainForm";
             this.Text = "LEAS Software ver 0.1";
-            this.panelSaisie.ResumeLayout(false);
+            this.SizeChanged += new System.EventHandler(this.onSizeChanged);
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelSaisie;
-        private System.Windows.Forms.Label situationLabel;
-        private System.Windows.Forms.Button prevButton;
-        private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.Panel container;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem acceuilToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nouvelleSaisieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chargerUneSaisieToolStripMenuItem;
+
     }
 }
 

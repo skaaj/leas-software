@@ -12,74 +12,95 @@ namespace leas_software
 {
     public partial class MainForm : Form
     {
+        private Model model;
 
-        private List<Situation> sList;
-        private int currentSituation;
-        private int nbSituations;
+        private SituationsControl situationControl;
+        private SplashControl splashControl;
+        private UserControl currentControl;
+        private NewUserControl newUserControl;
 
         public MainForm()
         {
+            /* Model */
+            model = new Model();
+
+            /* UI */
             InitializeComponent();
-            InitializePanels();
-            LoadSituations();
+            InitializeControls();
         }
+
+        /* Access */
+        public Model Model
+        {
+            get
+            {
+                return model;
+            }
+        }
+
 
         /* Init */
-        private void InitializePanels()
+        private void InitializeControls()
         {
-            panelSaisie.Controls.Add(situationLabel);
+            splashControl = new SplashControl();
+            newUserControl = new NewUserControl(this);
+
+            this.container.Controls.Add(splashControl);
         }
 
-        private void LoadSituations()
+        public void startUserSession(int id)
         {
-            sList = new List<Situation>();
-            sList.Add(new Situation(0, "Vous vous tapez le doigt devant votre voisin."));
-            sList.Add(new Situation(1, "Vous êtes dans le désert mais vous n'avez plus d'eau dans votre gourde."));
-            sList.Add(new Situation(2, "Vous avez oublié l'anniversaire de votre conjoint(e)."));
+            situationControl = new SituationsControl(this);
 
-            nbSituations = sList.Count;
-            goToSituation(0);
+            this.container.Controls.Clear();
+            this.container.Controls.Add(situationControl);
+            currentControl = situationControl;
+            resizeContainer();
         }
 
-        private void refreshUI()
+        private void resizeContainer()
         {
-            if (currentSituation == 0)
-                prevButton.Enabled = false;
-            else
-                prevButton.Enabled = true;
-
-            if (currentSituation == nbSituations - 1)
-                nextButton.Enabled = false;
-            else
-                nextButton.Enabled = true;
-
-            situationLabel.Text = sList[currentSituation].Text;
+            currentControl.Width = this.container.Width;
+            currentControl.Height = this.container.Height;
         }
 
-        private bool goToSituation(int id)
+        private void onClickSplashMenu(object sender, EventArgs e)
         {
-            if (nbSituations > 0 && id < nbSituations && id >= 0)
-            {
-                currentSituation = id;
-
-                refreshUI();
-                
-                return true;
-            }
-            
-            Console.WriteLine("Error : unable to change current situation.");
-            return false;
+            this.container.Controls.Clear();
+            this.container.Controls.Add(splashControl);
+            currentControl = splashControl;
         }
 
-        /* Events handling */
-        private void onNextButtonClick(object sender, EventArgs e)
+        private void onClickSituationsMenu(object sender, EventArgs e)
         {
-            goToSituation(currentSituation + 1);
+            this.container.Controls.Clear();
+            this.container.Controls.Add(situationControl);
+            currentControl = situationControl;
         }
 
-        private void onPrevButtonClick(object sender, EventArgs e)
+        private void onSizeChanged(object sender, EventArgs e)
         {
-            goToSituation(currentSituation - 1);
+            resizeContainer();
+        }
+
+        private void onClickHome(object sender, EventArgs e)
+        {
+            this.container.Controls.Clear();
+            this.container.Controls.Add(splashControl);
+            currentControl = splashControl;
+        }
+
+        private void onClickExit(object sender, EventArgs e) // FIXME : Bien vider les ressources
+        {
+            this.Dispose();
+            Application.Exit();
+        }
+
+        private void onClickNewUser(object sender, EventArgs e)
+        {
+            this.container.Controls.Clear();
+            this.container.Controls.Add(newUserControl);
+            currentControl = newUserControl;
         }
     }
 }

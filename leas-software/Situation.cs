@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace leas_software
 {
-    class Situation
+    public class Situation
     {
         private int    id;
         private string label;
