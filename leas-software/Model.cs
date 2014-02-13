@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Windows.Forms;
 
 namespace leas_software
 {
@@ -7,19 +9,33 @@ namespace leas_software
     {
         private List<Situation> sList;
         private User currentUser;
+        private SQLiteDatabase database;
 
         public Model()
         {
+            database = new SQLiteDatabase();
             this.LoadSituations();
         }
 
         private void LoadSituations()
         {
             sList = new List<Situation>();
-            sList.Add(new Situation(0, "Vous vous tapez le doigt devant votre voisin."));
-            sList.Add(new Situation(1, "Vous êtes dans le désert mais vous n'avez plus d'eau dans votre gourde."));
-            sList.Add(new Situation(2, "Vous avez oublié l'anniversaire de votre conjoint(e)."));
-            sList.Add(new Situation(2, "Votre Hyundai Matrix a un pneu crevé et vous n'avez pas de roue de secours."));
+
+            try
+            {
+                DataTable db_situations = database.GetDataTable("select * from situations");
+
+                foreach (DataRow r in db_situations.Rows)
+                {
+                    sList.Add(new Situation(int.Parse(r["id"].ToString()), r["label"].ToString()));
+                }
+            }
+            catch (Exception fail)
+            {
+                String error = "The following error has occurred:\n\n";
+                error += fail.Message.ToString() + "\n\n";
+                MessageBox.Show(error);
+            }
         }
 
         public Situation getSituation(int index)
@@ -46,6 +62,12 @@ namespace leas_software
             {
                 return currentUser;
             }
+        }
+
+        internal void addUser(string name, int age, string sex)
+        {
+            int bool_sex = (sex == "Homme") ? 1 : 0;
+            database.ExecuteNonQuery(String.Format("insert into patients values (null, '{0}', {1}, {2})", name, age, bool_sex));
         }
     }
 }

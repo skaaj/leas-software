@@ -67,6 +67,16 @@
             // numericAge
             // 
             this.numericAge.Location = new System.Drawing.Point(46, 30);
+            this.numericAge.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.numericAge.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             this.numericAge.Name = "numericAge";
             this.numericAge.Size = new System.Drawing.Size(163, 20);
             this.numericAge.TabIndex = 3;
@@ -89,6 +99,10 @@
             // 
             // comboBoxSex
             // 
+            this.comboBoxSex.AutoCompleteCustomSource.AddRange(new string[] {
+            "Homme",
+            "Femme"});
+            this.comboBoxSex.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxSex.FormattingEnabled = true;
             this.comboBoxSex.Items.AddRange(new object[] {
             "Homme",

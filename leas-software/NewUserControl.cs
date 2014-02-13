@@ -29,13 +29,18 @@ namespace leas_software
         private void onSubmit(object sender, EventArgs e)
         {
             /* TODO : prompt l'ajout */
-            string nom = this.boxUserName.Text;
-            int age = (int)numericAge.Value;
+            string nom  = this.boxUserName.Text;
+            int age     = (int)numericAge.Value;
             string sexe = comboBoxSex.Text;
-            if (!nom.Equals(String.Empty) || !sexe.Equals(String.Empty))
+
+            if (!nom.Equals(String.Empty) && !sexe.Equals(String.Empty))
             {
+                context.Model.addUser(nom, age, sexe);
                 context.Model.setCurrentUser(nom, age, sexe);
                 context.startUserSession(0);
+
+                boxUserName.Clear();
+                numericAge.Value = 25;
             }
         }
 

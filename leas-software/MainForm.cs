@@ -60,7 +60,7 @@ namespace leas_software
 
         private void resizeContainer()
         {
-            currentControl.Width = this.container.Width;
+            currentControl.Width = this.container.Width; // FIXME : provoque un crash lorsqu'on redimensionne sur le splash
             currentControl.Height = this.container.Height;
         }
 
