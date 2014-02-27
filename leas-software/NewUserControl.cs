@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace leas_software
 {
@@ -21,35 +22,39 @@ namespace leas_software
             this.context = context;
         }
 
-        private void onClickAge(object sender, EventArgs e)
-        {
-            this.numericAge.Select(0, this.numericAge.Value.ToString().Length);
-        }
-
         private void onSubmit(object sender, EventArgs e)
         {
             /* TODO : prompt l'ajout */
             string nom  = this.boxUserName.Text;
             int age     = (int)numericAge.Value;
-            string sexe = comboBoxSex.Text;
+            bool sexe = (comboBoxSex.Text == "Homme") ? true : false;
 
             if (!nom.Equals(String.Empty) && !sexe.Equals(String.Empty))
             {
-                context.Model.addUser(nom, age, sexe);
-                context.Model.setCurrentUser(nom, age, sexe);
-                context.startUserSession(0);
+                int id = context.Model.AddUser(nom, age, sexe);
+                context.StartUserSession(id);
 
                 boxUserName.Clear();
                 numericAge.Value = 25;
             }
         }
 
+        private void onEnter(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+
+            tb.Select(0, tb.Text.Length);
+            tb.ForeColor = Color.Black;
+            tb.BackColor = Color.White;
+        }
+
         private void onLeave(object sender, EventArgs e)
         {
             TextBox tb = (TextBox)sender;
-            if (tb.Text.Equals(String.Empty))
+            string mustFill = "Veuillez remplir ce champs";
+            if (tb.Text.Equals(String.Empty) || tb.Text.Equals(mustFill))
             {
-                tb.Text = "Veuillez remplir ce champs";
+                tb.Text = mustFill;
                 tb.ForeColor = Color.DarkRed;
                 tb.BackColor = Color.Pink;
             }
@@ -57,6 +62,26 @@ namespace leas_software
             {
                 tb.ForeColor = Color.Black;
                 tb.BackColor = Color.White;
+                tb.Text = new CultureInfo("fr-FR").TextInfo.ToTitleCase(tb.Text);
+            }
+        }
+
+        private void onClickAge(object sender, EventArgs e)
+        {
+            this.numericAge.Select(0, this.numericAge.Value.ToString().Length);
+        }
+
+        private void onClickName(object sender, EventArgs e)
+        {
+            this.boxUserName.Select(0, this.boxUserName.Text.Length);
+        }
+
+        private void onValidated(object sender, EventArgs e)
+        {
+            string input = this.comboBoxSex.Text.ToUpper();
+            if (!input.Equals("HOMME") && !input.Equals("FEMME"))
+            {
+                this.comboBoxSex.Text = "Homme";
             }
         }
     }

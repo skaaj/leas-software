@@ -35,13 +35,16 @@
             this.labelSex = new System.Windows.Forms.Label();
             this.comboBoxSex = new System.Windows.Forms.ComboBox();
             this.buttonSubmit = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.numericAge)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelUserName
             // 
+            this.labelUserName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelUserName.AutoSize = true;
-            this.labelUserName.Location = new System.Drawing.Point(5, 7);
+            this.labelUserName.Location = new System.Drawing.Point(3, 32);
             this.labelUserName.Name = "labelUserName";
             this.labelUserName.Size = new System.Drawing.Size(35, 13);
             this.labelUserName.TabIndex = 0;
@@ -49,16 +52,21 @@
             // 
             // boxUserName
             // 
-            this.boxUserName.Location = new System.Drawing.Point(46, 4);
+            this.boxUserName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.boxUserName.Location = new System.Drawing.Point(120, 29);
+            this.boxUserName.MaxLength = 24;
             this.boxUserName.Name = "boxUserName";
             this.boxUserName.Size = new System.Drawing.Size(163, 20);
             this.boxUserName.TabIndex = 1;
+            this.boxUserName.Click += new System.EventHandler(this.onClickName);
+            this.boxUserName.Enter += new System.EventHandler(this.onEnter);
             this.boxUserName.Leave += new System.EventHandler(this.onLeave);
             // 
             // labelAge
             // 
+            this.labelAge.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelAge.AutoSize = true;
-            this.labelAge.Location = new System.Drawing.Point(8, 32);
+            this.labelAge.Location = new System.Drawing.Point(3, 110);
             this.labelAge.Name = "labelAge";
             this.labelAge.Size = new System.Drawing.Size(32, 13);
             this.labelAge.TabIndex = 2;
@@ -66,7 +74,8 @@
             // 
             // numericAge
             // 
-            this.numericAge.Location = new System.Drawing.Point(46, 30);
+            this.numericAge.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.numericAge.Location = new System.Drawing.Point(120, 107);
             this.numericAge.Maximum = new decimal(new int[] {
             200,
             0,
@@ -89,8 +98,9 @@
             // 
             // labelSex
             // 
+            this.labelSex.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelSex.AutoSize = true;
-            this.labelSex.Location = new System.Drawing.Point(8, 59);
+            this.labelSex.Location = new System.Drawing.Point(3, 188);
             this.labelSex.Name = "labelSex";
             this.labelSex.Size = new System.Drawing.Size(37, 13);
             this.labelSex.TabIndex = 4;
@@ -99,22 +109,30 @@
             // 
             // comboBoxSex
             // 
+            this.comboBoxSex.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBoxSex.AutoCompleteCustomSource.AddRange(new string[] {
             "Homme",
             "Femme"});
-            this.comboBoxSex.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxSex.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.comboBoxSex.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.comboBoxSex.DropDownHeight = 60;
+            this.comboBoxSex.DropDownWidth = 120;
             this.comboBoxSex.FormattingEnabled = true;
+            this.comboBoxSex.IntegralHeight = false;
             this.comboBoxSex.Items.AddRange(new object[] {
             "Homme",
             "Femme"});
-            this.comboBoxSex.Location = new System.Drawing.Point(46, 56);
+            this.comboBoxSex.Location = new System.Drawing.Point(120, 184);
             this.comboBoxSex.Name = "comboBoxSex";
             this.comboBoxSex.Size = new System.Drawing.Size(163, 21);
             this.comboBoxSex.TabIndex = 5;
+            this.comboBoxSex.Text = "Homme";
+            this.comboBoxSex.Validated += new System.EventHandler(this.onValidated);
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(11, 96);
+            this.buttonSubmit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonSubmit.Location = new System.Drawing.Point(103, 262);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Size = new System.Drawing.Size(198, 23);
             this.buttonSubmit.TabIndex = 6;
@@ -122,22 +140,41 @@
             this.buttonSubmit.UseVisualStyleBackColor = true;
             this.buttonSubmit.Click += new System.EventHandler(this.onSubmit);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.buttonSubmit, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.comboBoxSex, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.boxUserName, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.labelAge, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.labelUserName, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.numericAge, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.labelSex, 0, 2);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 313);
+            this.tableLayoutPanel1.TabIndex = 7;
+            // 
             // NewUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.buttonSubmit);
-            this.Controls.Add(this.comboBoxSex);
-            this.Controls.Add(this.labelSex);
-            this.Controls.Add(this.numericAge);
-            this.Controls.Add(this.labelAge);
-            this.Controls.Add(this.boxUserName);
-            this.Controls.Add(this.labelUserName);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "NewUserControl";
             this.Size = new System.Drawing.Size(361, 313);
             ((System.ComponentModel.ISupportInitialize)(this.numericAge)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -150,5 +187,6 @@
         private System.Windows.Forms.Label labelSex;
         private System.Windows.Forms.ComboBox comboBoxSex;
         private System.Windows.Forms.Button buttonSubmit;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

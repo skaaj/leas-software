@@ -15,18 +15,22 @@ namespace leas_software
         private Model model;
 
         private int currentSituation;
-        private bool fireEvent;
+
         public SituationsControl(MainForm context)
         {
             InitializeComponent();
 
             this.model = context.Model;
+
+            // Situations
             this.currentSituation = 0;
             switchSituation(currentSituation);
+
+            // User
             this.labelUserName.Text = model.CurrentUser.Name;
         }
 
-        private void switchSituation(int index){
+        private void switchSituation(int index, bool updateNbSituation = true){
             Situation s = model.getSituation(index);
 
             if (s != null)
@@ -34,27 +38,26 @@ namespace leas_software
                 this.labelSituation.Text = s.Text;
                 currentSituation = index;
 
-                refreshUI();
+                refreshUI(updateNbSituation);
             }
         }
 
-        private void refreshUI()
+        private void refreshUI(bool updateNbSituation = true)
         {
-            int nbSituation = currentSituation + 1;
-            fireEvent = false;
-            this.boxCurrentSituation.Text = nbSituation.ToString();
-            fireEvent = true;
+            if (updateNbSituation)
+            {
+                int nbSituation = currentSituation + 1;
+                this.boxCurrentSituation.Text = nbSituation.ToString();
+            }
+
             this.labelNbSituations.Text = string.Concat("/ ", model.getNbSituations());
         }
 
         private void onTextChanged(object sender, EventArgs e)
         {
-            if (!fireEvent)
-                return;
-
             int index;
             if (int.TryParse(this.boxCurrentSituation.Text, out index))
-                switchSituation(index - 1);
+                switchSituation(index - 1, false);
         }
 
         private void onClickNext(object sender, EventArgs e)

@@ -11,17 +11,17 @@ namespace leas_software
         private int id;
         private string name;
         private int age;
-        private string sexe;
+        private bool sex;
         private int score;
         private List<String> answers;
         private List<String> other_answers;
 
-        public User(string name, int age, string sexe)
+        public User(int id, string name, int age, bool sex)
         {
-            this.id = 0;
+            this.id = id;
             this.name = name;
             this.age = age;
-            this.sexe = sexe;
+            this.sex = sex;
             this.score = 0;
             this.answers = new List<String>();
             this.other_answers = new List<String>();

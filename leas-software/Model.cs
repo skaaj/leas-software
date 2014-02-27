@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Windows.Forms;
 
 namespace leas_software
 {
     public class Model
     {
+        private SQLiteDatabase  database;
+
         private List<Situation> sList;
-        private User currentUser;
-        private SQLiteDatabase database;
+        private User            currentUser;
 
         public Model()
         {
@@ -17,24 +19,25 @@ namespace leas_software
             this.LoadSituations();
         }
 
+        public SQLiteDatabase Database
+        {
+            get
+            {
+                return database;
+            }
+        }
+
+        /* Situations */
         private void LoadSituations()
         {
             sList = new List<Situation>();
 
-            try
-            {
-                DataTable db_situations = database.GetDataTable("select * from situations");
+            DataRowCollection situations = database.GetSituations();
+            if (situations == null) return;
 
-                foreach (DataRow r in db_situations.Rows)
-                {
-                    sList.Add(new Situation(int.Parse(r["id"].ToString()), r["label"].ToString()));
-                }
-            }
-            catch (Exception fail)
+            foreach (DataRow situation in situations)
             {
-                String error = "The following error has occurred:\n\n";
-                error += fail.Message.ToString() + "\n\n";
-                MessageBox.Show(error);
+                sList.Add(new Situation(int.Parse(situation["id"].ToString()), situation["label"].ToString()));
             }
         }
 
@@ -46,14 +49,27 @@ namespace leas_software
             return sList[index];
         }
 
-        public void setCurrentUser(string nom, int age, string sexe)
-        {
-            currentUser = new User(nom, age, sexe);
-        }
-
         public int getNbSituations()
         {
             return sList.Count;
+        }
+
+        /* User */
+        public void SetCurrentUser(int id)
+        {
+            DataRowCollection db_results = database.GetUserInfos(id);
+            if (db_results.Count > 0)
+            {
+                string name = db_results[0]["name"].ToString();
+                int age = int.Parse(db_results[0]["age"].ToString());
+                bool sex = (db_results[0]["sex"].ToString() == "True") ? true : false;
+                currentUser = new User(id, name, age, sex);
+            }
+            else
+            {
+                MessageBox.Show("Impossible de charger la saisie.");
+                currentUser = new User(0, "Bug", 0, true);
+            }
         }
 
         public User CurrentUser
@@ -64,10 +80,12 @@ namespace leas_software
             }
         }
 
-        internal void addUser(string name, int age, string sex)
+        public int AddUser(string name, int age, bool sex)
         {
-            int bool_sex = (sex == "Homme") ? 1 : 0;
+            int bool_sex = (sex == true) ? 1 : 0;
             database.ExecuteNonQuery(String.Format("insert into patients values (null, '{0}', {1}, {2})", name, age, bool_sex));
+
+            return database.GetUserID(name, age, sex);
         }
     }
 }

@@ -14,10 +14,11 @@ namespace leas_software
     {
         private Model model;
 
+        private SplashControl     splashControl;
         private SituationsControl situationControl;
-        private SplashControl splashControl;
-        private UserControl currentControl;
-        private NewUserControl newUserControl;
+        private NewUserControl    newUserControl;
+        private LoadUserControl   loadUserControl;
+        private UserControl       currentControl;
 
         public MainForm()
         {
@@ -38,69 +39,78 @@ namespace leas_software
             }
         }
 
-
-        /* Init */
+        /* Controls */
         private void InitializeControls()
         {
-            splashControl = new SplashControl();
-            newUserControl = new NewUserControl(this);
+            splashControl    = new SplashControl();
+            newUserControl   = new NewUserControl(this);
+            loadUserControl  = new LoadUserControl(this);
 
-            this.container.Controls.Add(splashControl);
+            SelectControl(splashControl);
         }
 
-        public void startUserSession(int id)
+        private void SelectControl(UserControl uc)
         {
-            situationControl = new SituationsControl(this);
+            if (currentControl == uc) return;
 
             this.container.Controls.Clear();
-            this.container.Controls.Add(situationControl);
-            currentControl = situationControl;
+            this.container.Controls.Add(uc);
+            currentControl = uc;
+
             resizeContainer();
         }
 
-        private void resizeContainer()
+        /* Dispatcher */
+        public void StartUserSession(int id)
         {
-            currentControl.Width = this.container.Width; // FIXME : provoque un crash lorsqu'on redimensionne sur le splash
-            currentControl.Height = this.container.Height;
+            model.SetCurrentUser(id);
+
+            situationControl = new SituationsControl(this);
+            SelectControl(situationControl);
         }
 
         private void onClickSplashMenu(object sender, EventArgs e)
         {
-            this.container.Controls.Clear();
-            this.container.Controls.Add(splashControl);
-            currentControl = splashControl;
+            SelectControl(splashControl);
         }
 
         private void onClickSituationsMenu(object sender, EventArgs e)
         {
-            this.container.Controls.Clear();
-            this.container.Controls.Add(situationControl);
-            currentControl = situationControl;
+            SelectControl(situationControl);
         }
 
+        private void onClickHome(object sender, EventArgs e)
+        {
+            SelectControl(splashControl);
+        }
+
+        private void onClickNewUser(object sender, EventArgs e)
+        {
+            SelectControl(newUserControl);
+        }
+
+        private void onClickLoadUser(object sender, EventArgs e)
+        {
+            loadUserControl.RefreshData();
+            SelectControl(loadUserControl);
+        }
+
+        /* Events */
         private void onSizeChanged(object sender, EventArgs e)
         {
             resizeContainer();
         }
 
-        private void onClickHome(object sender, EventArgs e)
+        private void resizeContainer()
         {
-            this.container.Controls.Clear();
-            this.container.Controls.Add(splashControl);
-            currentControl = splashControl;
+            currentControl.Width = this.container.Width;
+            currentControl.Height = this.container.Height;
         }
 
         private void onClickExit(object sender, EventArgs e) // FIXME : Bien vider les ressources
         {
             this.Dispose();
             Application.Exit();
-        }
-
-        private void onClickNewUser(object sender, EventArgs e)
-        {
-            this.container.Controls.Clear();
-            this.container.Controls.Add(newUserControl);
-            currentControl = newUserControl;
         }
     }
 }

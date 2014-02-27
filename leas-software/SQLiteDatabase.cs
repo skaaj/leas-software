@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace leas_software
 {
-    class SQLiteDatabase
+    public class SQLiteDatabase
     {
         String dbConnection;
 
@@ -230,6 +230,76 @@ namespace leas_software
             {
                 return false;
             }
+        }
+
+        private void PromptException(Exception exception)
+        {
+            String error = "The following error has occurred:\n\n";
+            error += exception.Message.ToString() + "\n\n";
+
+            MessageBox.Show(error);
+        }
+
+        public DataRowCollection GetPatients()
+        {
+            try
+            {
+                DataTable table_patients = this.GetDataTable("select * from patients");
+                return table_patients.Rows;
+            }
+            catch (Exception exception)
+            {
+                PromptException(exception);
+            }
+
+            return null;
+        }
+
+        public DataRowCollection GetSituations()
+        {
+            try
+            {
+                DataTable table_situations = this.GetDataTable("select * from situations");
+                return table_situations.Rows;
+            }
+            catch (Exception exception)
+            {
+                PromptException(exception);
+            }
+
+            return null;
+        }
+
+        public int GetUserID(string name, int age, bool sex)
+        {
+            try
+            {
+                int db_sex = (sex == true) ? 1 : 0;
+                DataTable table = this.GetDataTable(String.Format("select id from patients where name='{0}' AND age='{1}' AND sex='{2}'", name, age, db_sex));
+                if (table == null) return 0;
+                else return int.Parse(table.Rows[0]["id"].ToString());
+            }
+            catch (Exception exception)
+            {
+                PromptException(exception);
+            }
+
+            return 0;
+        }
+
+        public DataRowCollection GetUserInfos(int id)
+        {
+            try
+            {
+                DataTable table = this.GetDataTable(String.Format("select * from patients where id='{0}'", id));
+                return table.Rows;
+            }
+            catch (Exception exception)
+            {
+                PromptException(exception);
+            }
+
+            return null;
         }
     }
 }
