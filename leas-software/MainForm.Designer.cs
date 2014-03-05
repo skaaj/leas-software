@@ -34,8 +34,9 @@
             this.nouvelleSaisieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chargerUneSaisieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.container = new System.Windows.Forms.Panel();
             this.buttonHelp = new System.Windows.Forms.ToolStripLabel();
+            this.container = new System.Windows.Forms.Panel();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +47,7 @@
             this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownButton1,
+            this.toolStripLabel1,
             this.buttonHelp});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
@@ -100,6 +102,12 @@
             this.quitterToolStripMenuItem.Text = "Quitter";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.onClickExit);
             // 
+            // buttonHelp
+            // 
+            this.buttonHelp.Name = "buttonHelp";
+            this.buttonHelp.Size = new System.Drawing.Size(31, 37);
+            this.buttonHelp.Text = "Aide";
+            // 
             // container
             // 
             this.container.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -108,11 +116,11 @@
             this.container.Size = new System.Drawing.Size(584, 321);
             this.container.TabIndex = 1;
             // 
-            // buttonHelp
+            // toolStripLabel1
             // 
-            this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Size = new System.Drawing.Size(31, 22);
-            this.buttonHelp.Text = "Aide";
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(54, 37);
+            this.toolStripLabel1.Text = "Glossaire";
             // 
             // MainForm
             // 
@@ -140,6 +148,7 @@
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chargerUneSaisieToolStripMenuItem;
         private System.Windows.Forms.ToolStripLabel buttonHelp;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
 
     }
 }
