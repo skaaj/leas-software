@@ -84,5 +84,10 @@ namespace leas_software
                 this.comboBoxSex.Text = "Homme";
             }
         }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewUserControl));
             this.labelUserName = new System.Windows.Forms.Label();
             this.boxUserName = new System.Windows.Forms.TextBox();
             this.labelAge = new System.Windows.Forms.Label();
@@ -44,6 +45,7 @@
             // 
             this.labelUserName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelUserName.AutoSize = true;
+            this.labelUserName.BackColor = System.Drawing.Color.Transparent;
             this.labelUserName.Location = new System.Drawing.Point(3, 32);
             this.labelUserName.Name = "labelUserName";
             this.labelUserName.Size = new System.Drawing.Size(35, 13);
@@ -66,6 +68,7 @@
             // 
             this.labelAge.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelAge.AutoSize = true;
+            this.labelAge.BackColor = System.Drawing.Color.Transparent;
             this.labelAge.Location = new System.Drawing.Point(3, 110);
             this.labelAge.Name = "labelAge";
             this.labelAge.Size = new System.Drawing.Size(32, 13);
@@ -75,6 +78,7 @@
             // numericAge
             // 
             this.numericAge.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.numericAge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(185)))), ((int)(((byte)(249)))));
             this.numericAge.Location = new System.Drawing.Point(120, 107);
             this.numericAge.Maximum = new decimal(new int[] {
             200,
@@ -100,6 +104,7 @@
             // 
             this.labelSex.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelSex.AutoSize = true;
+            this.labelSex.BackColor = System.Drawing.Color.Transparent;
             this.labelSex.Location = new System.Drawing.Point(3, 188);
             this.labelSex.Name = "labelSex";
             this.labelSex.Size = new System.Drawing.Size(37, 13);
@@ -115,6 +120,7 @@
             "Femme"});
             this.comboBoxSex.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.comboBoxSex.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.comboBoxSex.BackColor = System.Drawing.Color.White;
             this.comboBoxSex.DropDownHeight = 60;
             this.comboBoxSex.DropDownWidth = 120;
             this.comboBoxSex.FormattingEnabled = true;
@@ -142,6 +148,7 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tableLayoutPanel1.BackgroundImage")));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -163,6 +170,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 313);
             this.tableLayoutPanel1.TabIndex = 7;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // NewUserControl
             // 
