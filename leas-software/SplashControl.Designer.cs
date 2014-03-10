@@ -72,11 +72,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "SplashControl";
-            this.Size = new System.Drawing.Size(241, 166);
+            this.Size = new System.Drawing.Size(794, 451);
             this.Load += new System.EventHandler(this.SplashControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
