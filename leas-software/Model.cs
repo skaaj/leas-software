@@ -80,10 +80,10 @@ namespace leas_software
             }
         }
 
-        public int AddUser(string name, int age, bool sex)
+        public int AddUser(string name, int age, bool sex, int category)
         {
             int bool_sex = (sex == true) ? 1 : 0;
-            database.ExecuteNonQuery(String.Format("insert into patients values (null, '{0}', {1}, {2}, 0)", name, age, bool_sex));
+            database.ExecuteNonQuery(String.Format("insert into patients values (null, '{0}', {1}, {2}, {3})", name, age, bool_sex, category));
 
             return database.GetUserID(name, age, sex);
         }

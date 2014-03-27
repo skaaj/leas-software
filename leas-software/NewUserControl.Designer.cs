@@ -36,8 +36,11 @@
             this.comboBoxSex = new System.Windows.Forms.ComboBox();
             this.buttonSubmit = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.labelCategory = new System.Windows.Forms.Label();
+            this.numericCategory = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numericAge)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCategory)).BeginInit();
             this.SuspendLayout();
             // 
             // labelUserName
@@ -45,7 +48,7 @@
             this.labelUserName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelUserName.AutoSize = true;
             this.labelUserName.BackColor = System.Drawing.Color.Transparent;
-            this.labelUserName.Location = new System.Drawing.Point(3, 32);
+            this.labelUserName.Location = new System.Drawing.Point(3, 24);
             this.labelUserName.Name = "labelUserName";
             this.labelUserName.Size = new System.Drawing.Size(35, 13);
             this.labelUserName.TabIndex = 0;
@@ -54,7 +57,7 @@
             // boxUserName
             // 
             this.boxUserName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.boxUserName.Location = new System.Drawing.Point(120, 29);
+            this.boxUserName.Location = new System.Drawing.Point(140, 21);
             this.boxUserName.MaxLength = 24;
             this.boxUserName.Name = "boxUserName";
             this.boxUserName.Size = new System.Drawing.Size(163, 20);
@@ -68,7 +71,7 @@
             this.labelAge.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelAge.AutoSize = true;
             this.labelAge.BackColor = System.Drawing.Color.Transparent;
-            this.labelAge.Location = new System.Drawing.Point(3, 110);
+            this.labelAge.Location = new System.Drawing.Point(3, 86);
             this.labelAge.Name = "labelAge";
             this.labelAge.Size = new System.Drawing.Size(32, 13);
             this.labelAge.TabIndex = 2;
@@ -78,7 +81,7 @@
             // 
             this.numericAge.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numericAge.BackColor = System.Drawing.Color.White;
-            this.numericAge.Location = new System.Drawing.Point(120, 107);
+            this.numericAge.Location = new System.Drawing.Point(140, 83);
             this.numericAge.Maximum = new decimal(new int[] {
             200,
             0,
@@ -104,7 +107,7 @@
             this.labelSex.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelSex.AutoSize = true;
             this.labelSex.BackColor = System.Drawing.Color.Transparent;
-            this.labelSex.Location = new System.Drawing.Point(3, 188);
+            this.labelSex.Location = new System.Drawing.Point(3, 148);
             this.labelSex.Name = "labelSex";
             this.labelSex.Size = new System.Drawing.Size(37, 13);
             this.labelSex.TabIndex = 4;
@@ -127,7 +130,7 @@
             this.comboBoxSex.Items.AddRange(new object[] {
             "Homme",
             "Femme"});
-            this.comboBoxSex.Location = new System.Drawing.Point(120, 184);
+            this.comboBoxSex.Location = new System.Drawing.Point(140, 144);
             this.comboBoxSex.Name = "comboBoxSex";
             this.comboBoxSex.Size = new System.Drawing.Size(163, 21);
             this.comboBoxSex.TabIndex = 5;
@@ -137,7 +140,7 @@
             // buttonSubmit
             // 
             this.buttonSubmit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonSubmit.Location = new System.Drawing.Point(103, 262);
+            this.buttonSubmit.Location = new System.Drawing.Point(123, 269);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Size = new System.Drawing.Size(198, 23);
             this.buttonSubmit.TabIndex = 6;
@@ -147,29 +150,59 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.buttonSubmit, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.comboBoxSex, 1, 2);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.16384F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.83616F));
+            this.tableLayoutPanel1.Controls.Add(this.numericCategory, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.boxUserName, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.labelAge, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.buttonSubmit, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.labelUserName, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.numericAge, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelSex, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Controls.Add(this.labelAge, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.comboBoxSex, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.labelCategory, 0, 3);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 313);
             this.tableLayoutPanel1.TabIndex = 7;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            // 
+            // labelCategory
+            // 
+            this.labelCategory.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelCategory.AutoSize = true;
+            this.labelCategory.Location = new System.Drawing.Point(3, 210);
+            this.labelCategory.Name = "labelCategory";
+            this.labelCategory.Size = new System.Drawing.Size(58, 13);
+            this.labelCategory.TabIndex = 7;
+            this.labelCategory.Text = "Catégorie :";
+            this.labelCategory.UseMnemonic = false;
+            // 
+            // numericCategory
+            // 
+            this.numericCategory.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.numericCategory.BackColor = System.Drawing.Color.White;
+            this.numericCategory.Location = new System.Drawing.Point(140, 207);
+            this.numericCategory.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numericCategory.Name = "numericCategory";
+            this.numericCategory.Size = new System.Drawing.Size(163, 20);
+            this.numericCategory.TabIndex = 8;
+            this.numericCategory.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             // 
             // NewUserControl
             // 
@@ -181,6 +214,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericAge)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCategory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -195,5 +229,7 @@
         private System.Windows.Forms.ComboBox comboBoxSex;
         private System.Windows.Forms.Button buttonSubmit;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.NumericUpDown numericCategory;
+        private System.Windows.Forms.Label labelCategory;
     }
 }

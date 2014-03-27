@@ -28,10 +28,11 @@ namespace leas_software
             string nom  = this.boxUserName.Text;
             int age     = (int)numericAge.Value;
             bool sexe = (comboBoxSex.Text == "Homme") ? true : false;
+            int category = (int)numericCategory.Value;
 
             if (!nom.Equals(String.Empty) && !sexe.Equals(String.Empty))
             {
-                int id = context.Model.AddUser(nom, age, sexe);
+                int id = context.Model.AddUser(nom, age, sexe, category);
                 context.StartUserSession(id);
 
                 boxUserName.Clear();
@@ -83,11 +84,6 @@ namespace leas_software
             {
                 this.comboBoxSex.Text = "Homme";
             }
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
