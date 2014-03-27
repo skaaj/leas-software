@@ -132,7 +132,7 @@
             this.Controls.Add(this.container);
             this.Controls.Add(this.toolStrip);
             this.Name = "MainForm";
-            this.Text = "LEAS Software ver 0.1";
+            this.Text = "LEAS Software ver 0.3";
             this.SizeChanged += new System.EventHandler(this.onSizeChanged);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
