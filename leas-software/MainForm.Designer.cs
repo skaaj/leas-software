@@ -34,9 +34,9 @@
             this.nouvelleSaisieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chargerUneSaisieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.buttonHelp = new System.Windows.Forms.ToolStripLabel();
             this.container = new System.Windows.Forms.Panel();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,10 +64,10 @@
             this.chargerUneSaisieToolStripMenuItem,
             this.quitterToolStripMenuItem});
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.toolStripDropDownButton1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Padding = new System.Windows.Forms.Padding(5);
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(65, 37);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(65, 40);
             this.toolStripDropDownButton1.Text = "Fichier";
             // 
             // acceuilToolStripMenuItem
@@ -102,10 +102,18 @@
             this.quitterToolStripMenuItem.Text = "Quitter";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.onClickExit);
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(54, 40);
+            this.toolStripLabel1.Text = "Glossaire";
+            // 
             // buttonHelp
             // 
+            this.buttonHelp.Margin = new System.Windows.Forms.Padding(0);
             this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Size = new System.Drawing.Size(31, 37);
+            this.buttonHelp.Size = new System.Drawing.Size(31, 40);
             this.buttonHelp.Text = "Aide";
             // 
             // container
@@ -115,12 +123,6 @@
             this.container.Name = "container";
             this.container.Size = new System.Drawing.Size(584, 321);
             this.container.TabIndex = 1;
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(54, 37);
-            this.toolStripLabel1.Text = "Glossaire";
             // 
             // MainForm
             // 

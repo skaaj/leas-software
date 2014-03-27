@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewUserControl));
             this.labelUserName = new System.Windows.Forms.Label();
             this.boxUserName = new System.Windows.Forms.TextBox();
             this.labelAge = new System.Windows.Forms.Label();
@@ -78,7 +77,7 @@
             // numericAge
             // 
             this.numericAge.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.numericAge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(185)))), ((int)(((byte)(249)))));
+            this.numericAge.BackColor = System.Drawing.Color.White;
             this.numericAge.Location = new System.Drawing.Point(120, 107);
             this.numericAge.Maximum = new decimal(new int[] {
             200,
@@ -148,7 +147,6 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tableLayoutPanel1.BackgroundImage")));
             this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());

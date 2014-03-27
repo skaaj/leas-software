@@ -19,7 +19,7 @@ namespace leas_software
         /// </summary>
         public SQLiteDatabase()
         {
-            dbConnection = "Data Source=leas_db.s3db";
+            dbConnection = "Data Source=../../leas_db.s3db";
             string path = Directory.GetCurrentDirectory();
         }
 
