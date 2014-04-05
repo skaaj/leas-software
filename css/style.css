@@ -1,0 +1,12 @@
+body{
+	background: #e7e7e7 url(../img/blur.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;	
+}
+
+.tile{
+	background: white;
+	font-family: 'Roboto', sans-serif;
+}
