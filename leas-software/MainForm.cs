@@ -18,6 +18,7 @@ namespace leas_software
         private SituationsControl situationControl;
         private NewUserControl    newUserControl;
         private LoadUserControl   loadUserControl;
+        private GlossaryControl   glossaryControl;
         private UserControl       currentControl;
 
         public MainForm()
@@ -45,6 +46,7 @@ namespace leas_software
             splashControl    = new SplashControl();
             newUserControl   = new NewUserControl(this);
             loadUserControl  = new LoadUserControl(this);
+            glossaryControl  = new GlossaryControl(this);
 
             SelectControl(splashControl);
         }
@@ -111,6 +113,11 @@ namespace leas_software
         {
             this.Dispose();
             Application.Exit();
+        }
+
+        private void onClickGlossary(object sender, EventArgs e)
+        {
+            SelectControl(glossaryControl);
         }
     }
 }

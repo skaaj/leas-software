@@ -254,6 +254,21 @@ namespace leas_software
             return null;
         }
 
+        public DataRowCollection GetWords()
+        {
+            try
+            {
+                DataTable table_words = this.GetDataTable("select words.label, words.level, lexicals.label as lexical from words, lexicals where words.fk_lexicals == lexicals.id");
+                return table_words.Rows;
+            }
+            catch (Exception exception)
+            {
+                PromptException(exception);
+            }
+
+            return null;
+        }
+
         public DataRowCollection GetSituations()
         {
             try

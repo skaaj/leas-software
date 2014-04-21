@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlossaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GlossaryControl.Designer.cs">
+      <DependentUpon>GlossaryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     </Compile>
     <Compile Include="SQLiteDatabase.cs" />
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="GlossaryControl.resx">
+      <DependentUpon>GlossaryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoadUserControl.resx">
       <DependentUpon>LoadUserControl.cs</DependentUpon>
     </EmbeddedResource>
