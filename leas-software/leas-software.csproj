@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseAdapter.cs" />
     <Compile Include="GlossaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +93,7 @@
     </Compile>
     <Compile Include="SQLiteDatabase.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="Word.cs" />
     <EmbeddedResource Include="GlossaryControl.resx">
       <DependentUpon>GlossaryControl.cs</DependentUpon>
     </EmbeddedResource>

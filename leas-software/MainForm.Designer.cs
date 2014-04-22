@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.acceuilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,6 +38,8 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.buttonHelp = new System.Windows.Forms.ToolStripLabel();
             this.container = new System.Windows.Forms.Panel();
+            this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
+            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,9 +51,12 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownButton1,
             this.toolStripLabel1,
-            this.buttonHelp});
+            this.buttonHelp,
+            this.toolStripButtonRefresh,
+            this.toolStripProgressBar});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Padding = new System.Windows.Forms.Padding(2);
             this.toolStrip.Size = new System.Drawing.Size(584, 40);
             this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip1";
@@ -67,7 +73,7 @@
             this.toolStripDropDownButton1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Padding = new System.Windows.Forms.Padding(5);
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(65, 40);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(65, 36);
             this.toolStripDropDownButton1.Text = "Fichier";
             // 
             // acceuilToolStripMenuItem
@@ -106,7 +112,7 @@
             // 
             this.toolStripLabel1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(54, 40);
+            this.toolStripLabel1.Size = new System.Drawing.Size(54, 36);
             this.toolStripLabel1.Text = "Glossaire";
             this.toolStripLabel1.Click += new System.EventHandler(this.onClickGlossary);
             // 
@@ -114,7 +120,7 @@
             // 
             this.buttonHelp.Margin = new System.Windows.Forms.Padding(0);
             this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Size = new System.Drawing.Size(31, 40);
+            this.buttonHelp.Size = new System.Drawing.Size(31, 36);
             this.buttonHelp.Text = "Aide";
             // 
             // container
@@ -125,6 +131,22 @@
             this.container.Size = new System.Drawing.Size(584, 321);
             this.container.TabIndex = 1;
             // 
+            // toolStripButtonRefresh
+            // 
+            this.toolStripButtonRefresh.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRefresh.Image")));
+            this.toolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRefresh.Name = "toolStripButtonRefresh";
+            this.toolStripButtonRefresh.Size = new System.Drawing.Size(66, 33);
+            this.toolStripButtonRefresh.Text = "Refresh";
+            this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripProgressBar
+            // 
+            this.toolStripProgressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripProgressBar.Name = "toolStripProgressBar";
+            this.toolStripProgressBar.Size = new System.Drawing.Size(33, 33);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,7 +155,7 @@
             this.Controls.Add(this.container);
             this.Controls.Add(this.toolStrip);
             this.Name = "MainForm";
-            this.Text = "LEAS Software ver 0.3";
+            this.Text = "LEAS Software ver 0.4";
             this.SizeChanged += new System.EventHandler(this.onSizeChanged);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
@@ -152,6 +174,8 @@
         private System.Windows.Forms.ToolStripMenuItem chargerUneSaisieToolStripMenuItem;
         private System.Windows.Forms.ToolStripLabel buttonHelp;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonRefresh;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
 
     }
 }

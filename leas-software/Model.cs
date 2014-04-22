@@ -8,22 +8,44 @@ namespace leas_software
 {
     public class Model
     {
-        private SQLiteDatabase  database;
+        private DatabaseAdapter database;
 
         private List<Situation> sList;
+        private List<Word>      wList;
         private User            currentUser;
 
         public Model()
         {
-            database = new SQLiteDatabase();
+            database = new DatabaseAdapter("../../leas_db.s3db;UseUTF8Encoding=True;");
             this.LoadSituations();
+            this.LoadWords();
         }
 
-        public SQLiteDatabase Database
+        public DatabaseAdapter Database
         {
             get
             {
                 return database;
+            }
+        }
+
+        public List<Word> Words
+        {
+            get
+            {
+                return wList;
+            }
+        }
+
+        public List<String> Lexicals
+        {
+            get
+            {
+                List<String> lexicals = new List<string>();
+                foreach (Word w in wList)
+                    lexicals.Add(w.Lexical);
+
+                return lexicals;
             }
         }
 
@@ -52,6 +74,136 @@ namespace leas_software
         public int getNbSituations()
         {
             return sList.Count;
+        }
+
+        /* Words */
+        private void LoadWords()
+        {
+            wList = new List<Word>();
+
+            DataRowCollection words = database.GetWords();
+            if (words == null) return;
+
+            foreach (DataRow word in words)
+            {
+                string label = word["label"].ToString();
+                string level = word["level"].ToString();
+                string lexical = word["lexical"].ToString();
+
+                wList.Add(new Word(label, int.Parse(level), lexical));
+            }
+        }
+
+        public Word getWord(int index)
+        {
+            if (index < 0 || index >= wList.Count)
+                return null;
+
+            return wList[index];
+        }
+
+        public void AddWord(Word word)
+        {
+            string lexicalID = database.GetLexicalID(word.Lexical);
+
+            if (lexicalID == null)
+                lexicalID = AddLexical(word.Lexical);
+
+            database.ExecuteNonQuery(String.Format("insert into words values (null, '{0}', {1}, {2})", word.Label, word.Level, lexicalID));
+            wList.Add(word);
+        }
+
+        public int UpdateWord(string newWord, string oldWord)
+        {
+            int updated = 0;
+            if (!WordAlreadyExists(newWord))
+            {
+                updated = database.ExecuteNonQuery(String.Format("update words set label = '{0}' WHERE label = '{1}'", newWord, oldWord));
+
+                if (updated == 0)
+                    return updated;
+
+                int i = 0;
+                while (i < wList.Count)
+                {
+                    if (wList[i].Label == oldWord)
+                    {
+                        wList[i].Label = newWord;
+                        i = wList.Count;
+                    }
+                }
+            }
+
+            return updated;
+        }
+
+        public int UpdateLevel(string level, string word)
+        {
+            int updated = 0;
+
+            updated = database.ExecuteNonQuery(String.Format("update words set level = '{0}' WHERE label = '{1}'", level, word));
+            
+            if (updated == 0)
+                return updated;
+
+            int i = 0;
+            while (i < wList.Count)
+            {
+                if (wList[i].Label == word)
+                {
+                    wList[i].Level = int.Parse(level);
+                    i = wList.Count;
+                }
+
+                i++;
+            }
+
+            return updated;
+        }
+
+        public int UpdateLexical(string newLexical, string word)
+        {
+            int updated = 0;
+            string lexicalID = database.GetLexicalID(newLexical);
+
+            if (lexicalID == null)
+                lexicalID = AddLexical(newLexical);
+
+            updated = database.ExecuteNonQuery(String.Format("update words set fk_lexicals = {0} WHERE label = '{1}'", lexicalID, word));
+            
+            if (updated == 0)
+                return updated;
+
+            int i = 0;
+            while (i < wList.Count)
+            {
+                if (wList[i].Label == word)
+                {
+                    wList[i].Lexical = newLexical;
+                    i = wList.Count;
+                }
+
+                i++;
+            }
+
+            return updated;
+        }
+
+        private string AddLexical(string lexical)
+        {
+            database.ExecuteNonQuery(String.Format("insert into lexicals values (null, '{0}')", lexical));
+            
+            return database.GetLexicalID(lexical);
+        }
+
+        public bool WordAlreadyExists(string word)
+        {
+            int i = 0;
+            while (i < wList.Count)
+                if (wList[i++].Label == word)
+                    return true;
+
+            return false;
         }
 
         /* User */

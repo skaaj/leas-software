@@ -119,5 +119,22 @@ namespace leas_software
         {
             SelectControl(glossaryControl);
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e) // TODO
+        {
+            NotifyWorking();
+        }
+
+        public void NotifyWorking() // TODO
+        {
+            int i = 0;
+            while (i < 100)
+            {
+                toolStripProgressBar.Value = i++;
+                System.Threading.Thread.Sleep(10);
+            }
+            if(toolStripProgressBar.Value > 90)
+                toolStripProgressBar.Value = 0;
+        }
     }
 }

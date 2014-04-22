@@ -74,5 +74,11 @@ namespace leas_software
         {
             this.boxCurrentSituation.SelectAll();
         }
+
+        private void onResize(object sender, EventArgs e)
+        {
+            TableLayoutPanel table = this.tableLayoutPanel;
+            table.SetBounds(table.Left, table.Top, table.Width, this.buttonNext.Top - table.Top);
+        }
     }
 }
