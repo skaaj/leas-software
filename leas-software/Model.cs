@@ -131,6 +131,8 @@ namespace leas_software
                         wList[i].Label = newWord;
                         i = wList.Count;
                     }
+
+                    i++;
                 }
             }
 
