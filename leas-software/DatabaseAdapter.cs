@@ -81,6 +81,11 @@ namespace leas_software
             return this.Select("select * from situations");
         }
 
+        public DataRowCollection GetAnswers()
+        {
+            return this.Select("select * from answers");
+        }
+
         //
         // UTILS
         //

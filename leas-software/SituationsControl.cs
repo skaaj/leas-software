@@ -16,6 +16,12 @@ namespace leas_software
 
         private int currentSituation;
 
+        private int rowIndex;
+        private int colIndex;
+        private string cellValue;
+
+        private enum Column { Word, Score };
+
         public SituationsControl(MainForm context)
         {
             InitializeComponent();
@@ -30,11 +36,68 @@ namespace leas_software
             this.labelUserName.Text = model.CurrentUser.Name;
         }
 
+        private void LoadAnswers(int id)
+        {
+            List<string> pAnswers = model.CurrentUser.GetAnswersFor(id);
+            this.dataGridViewUser.Rows.Clear();
+
+            if (pAnswers != null)
+                foreach (string a in pAnswers)
+                    this.dataGridViewUser.Rows.Add(a);
+
+            List<string> oAnswers = model.CurrentUser.GetOAnswersFor(id);
+            this.dataGridViewOther.Rows.Clear();
+
+            if (oAnswers != null)
+                foreach (string a in oAnswers)
+                    this.dataGridViewOther.Rows.Add(a);
+        }
+
+        private void SaveModifications()
+        {
+            if (dataGridViewUser.Rows.Count > 1) // if there is something to save
+            {
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < dataGridViewUser.Rows.Count; i++)
+                {
+                    object value = dataGridViewUser.Rows[i].Cells[0].Value;
+                    if (value != null)
+                        builder.Append(value.ToString() + "#");
+                }
+
+                string concatened = builder.ToString();
+                if (concatened.Length > 1)
+                    concatened = concatened.Remove(concatened.Length - 1); // remove the last #
+
+                model.UpdateAnswers(model.getSituation(currentSituation).ID, concatened);
+            }
+
+            if (dataGridViewOther.Rows.Count > 1) // if there is something to save
+            {
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < dataGridViewOther.Rows.Count; i++)
+                {
+                    object value = dataGridViewOther.Rows[i].Cells[0].Value;
+                    if (value != null)
+                        builder.Append(value.ToString() + "#");
+                }
+
+                string concatened = builder.ToString();
+                if (concatened.Length > 1)
+                    concatened = concatened.Remove(concatened.Length - 1); // remove the last #
+
+                model.UpdateOtherAnswers(model.getSituation(currentSituation).ID, concatened);
+            }
+        }
+
         private void switchSituation(int index, bool updateNbSituation = true){
             Situation s = model.getSituation(index);
 
             if (s != null)
             {
+                SaveModifications();
+
+                LoadAnswers(s.ID);
                 this.labelSituation.Text = s.Text;
                 currentSituation = index;
 
@@ -79,6 +142,13 @@ namespace leas_software
         {
             TableLayoutPanel table = this.tableLayoutPanel;
             table.SetBounds(table.Left, table.Top, table.Width, this.buttonNext.Top - table.Top);
+        }
+
+        private void onCellEnterUser(object sender, DataGridViewCellEventArgs e)
+        {
+            rowIndex = e.RowIndex;
+            colIndex = e.ColumnIndex;
+            //cellValue = dataGridViewUser.Rows[rowIndex].Cells[colIndex].Value.ToString();
         }
     }
 }

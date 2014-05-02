@@ -63,7 +63,7 @@
             // buttonNext
             // 
             this.buttonNext.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonNext.Location = new System.Drawing.Point(530, 385);
+            this.buttonNext.Location = new System.Drawing.Point(529, 385);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(54, 25);
             this.buttonNext.TabIndex = 1;
@@ -138,6 +138,7 @@
             this.dataGridViewUser.RowHeadersVisible = false;
             this.dataGridViewUser.Size = new System.Drawing.Size(334, 330);
             this.dataGridViewUser.TabIndex = 6;
+            this.dataGridViewUser.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellEnterUser);
             // 
             // labelOther
             // 
@@ -158,7 +159,7 @@
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
             this.tableLayoutPanel.Controls.Add(this.labelSituation, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.buttonNext, 3, 3);
             this.tableLayoutPanel.Controls.Add(this.labelNbSituations, 2, 3);
@@ -203,9 +204,9 @@
             // buttonResult
             // 
             this.buttonResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonResult.Location = new System.Drawing.Point(590, 385);
+            this.buttonResult.Location = new System.Drawing.Point(589, 385);
             this.buttonResult.Name = "buttonResult";
-            this.buttonResult.Size = new System.Drawing.Size(55, 25);
+            this.buttonResult.Size = new System.Drawing.Size(56, 25);
             this.buttonResult.TabIndex = 10;
             this.buttonResult.Text = "Fin";
             this.buttonResult.UseVisualStyleBackColor = true;
@@ -217,6 +218,7 @@
             // 
             // scoreCol
             // 
+            this.scoreCol.FillWeight = 25F;
             this.scoreCol.HeaderText = "";
             this.scoreCol.Name = "scoreCol";
             // 
@@ -227,6 +229,7 @@
             // 
             // scoreColOther
             // 
+            this.scoreColOther.FillWeight = 25F;
             this.scoreColOther.HeaderText = "";
             this.scoreColOther.Name = "scoreColOther";
             // 

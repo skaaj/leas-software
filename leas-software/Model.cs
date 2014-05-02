@@ -63,6 +63,32 @@ namespace leas_software
             }
         }
 
+        private void LoadAnswers()
+        {
+            DataRowCollection answers = database.GetAnswers();
+            if (answers == null) return;
+
+            foreach (DataRow answer in answers)
+            {
+                currentUser.Answers.Add(int.Parse(answer["id_situation"].ToString()), answer["p_answers"].ToString());
+                currentUser.OtherAnswers.Add(int.Parse(answer["id_situation"].ToString()), answer["o_answers"].ToString());
+            }
+        }
+
+        public void UpdateAnswers(int id, string answers)
+        {
+            database.ExecuteNonQuery(String.Format("update answers set p_answers = '{0}' WHERE id_patient = {1} AND id_situation = {2}", answers, currentUser.ID, id));
+
+            currentUser.Answers[id] = answers;
+        }
+
+        public void UpdateOtherAnswers(int id, string answers)
+        {
+            database.ExecuteNonQuery(String.Format("update answers set o_answers = '{0}' WHERE id_patient = {1} AND id_situation = {2}", answers, currentUser.ID, id));
+
+            currentUser.OtherAnswers[id] = answers;
+        }
+
         public Situation getSituation(int index)
         {
             if (index < 0 || index >= sList.Count)
@@ -218,6 +244,7 @@ namespace leas_software
                 int age = int.Parse(db_results[0]["age"].ToString());
                 bool sex = (db_results[0]["sex"].ToString() == "True") ? true : false;
                 currentUser = new User(id, name, age, sex);
+                this.LoadAnswers();
             }
             else
             {
