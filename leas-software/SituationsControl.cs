@@ -51,6 +51,26 @@ namespace leas_software
             if (oAnswers != null)
                 foreach (string a in oAnswers)
                     this.dataGridViewOther.Rows.Add(a);
+
+            List<string> scores = model.CurrentUser.GetScoresFor(id, false);
+            List<string> scoresOther = model.CurrentUser.GetScoresFor(id, true);
+
+            if (scores != null)
+            {
+                for (int i = 0; i < this.dataGridViewUser.Rows.Count - 1; i++)
+                {
+                    SetScore(i, 1, scores[i], false);
+                    SetScore(i, 1, scoresOther[i], true);
+                }
+            }
+        }
+
+        private void SetScore(int row, int col, string score, bool other)
+        {
+            if (other)
+                this.dataGridViewOther.Rows[row].Cells[col].Value = score;
+            else
+                this.dataGridViewUser.Rows[row].Cells[col].Value = score;
         }
 
         private void SaveModifications()

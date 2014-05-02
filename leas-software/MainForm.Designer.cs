@@ -155,12 +155,11 @@
             this.Controls.Add(this.container);
             this.Controls.Add(this.toolStrip);
             this.Name = "MainForm";
-            this.Text = "LEAS Software ver 0.4";
+            this.Text = "LEAS Software ver 0.5";
             this.SizeChanged += new System.EventHandler(this.onSizeChanged);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion

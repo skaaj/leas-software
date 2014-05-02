@@ -72,6 +72,7 @@ namespace leas_software
             {
                 currentUser.Answers.Add(int.Parse(answer["id_situation"].ToString()), answer["p_answers"].ToString());
                 currentUser.OtherAnswers.Add(int.Parse(answer["id_situation"].ToString()), answer["o_answers"].ToString());
+                currentUser.Scores.Add(int.Parse(answer["id_situation"].ToString()), answer["scores"].ToString());
             }
         }
 

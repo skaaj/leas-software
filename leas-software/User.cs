@@ -12,15 +12,15 @@ namespace leas_software
         private string name;
         private int age;
         private bool sex;
-        private int score;
         private Dictionary<int, String> answers;
         private Dictionary<int, String> other_answers;
+        private Dictionary<int, String> scores;
 
         public User()
         {
-            this.score = 0;
             this.answers = new Dictionary<int, String>();
             this.other_answers = new Dictionary<int, String>();
+            this.scores = new Dictionary<int, String>();
         }
 
         public User(int id, string name, int age, bool sex) : this()
@@ -40,6 +40,31 @@ namespace leas_software
                 List<string> output = new List<string>();
                 foreach (string a in result.Split('#'))
                     output.Add(a);
+                return output;
+            }
+
+            return null;
+        }
+
+        public List<string> GetScoresFor(int id, bool other)
+        {
+            string result;
+
+            if (scores.TryGetValue(id, out result))
+            {
+                List<string> output = new List<string>();
+
+                string[] firstSplit = result.Split('@');
+                string[] secondSplit;
+                
+                if(other)
+                    secondSplit = firstSplit[1].Split('#');
+                else
+                    secondSplit = firstSplit[0].Split('#');
+
+                foreach (var s in secondSplit)
+                    output.Add(s);
+
                 return output;
             }
 
@@ -82,6 +107,18 @@ namespace leas_software
             set
             {
                 other_answers = value;
+            }
+        }
+
+        public Dictionary<int, String> Scores
+        {
+            get
+            {
+                return scores;
+            }
+            set
+            {
+                scores = value;
             }
         }
 
