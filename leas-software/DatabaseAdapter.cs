@@ -81,9 +81,9 @@ namespace leas_software
             return this.Select("select * from situations");
         }
 
-        public DataRowCollection GetAnswers()
+        public DataRowCollection GetAnswers(int id)
         {
-            return this.Select("select * from answers");
+            return this.Select("select * from answers where id_patient=" + id);
         }
 
         //

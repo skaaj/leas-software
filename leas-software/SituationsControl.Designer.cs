@@ -140,6 +140,7 @@
             this.dataGridViewUser.TabIndex = 6;
             this.dataGridViewUser.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellEnterUser);
             this.dataGridViewUser.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellValueChanged);
+            this.dataGridViewUser.KeyUp += new System.Windows.Forms.KeyEventHandler(this.onKeyUp);
             // 
             // wordCol
             // 
@@ -171,7 +172,7 @@
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
             this.tableLayoutPanel.Controls.Add(this.labelSituation, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.buttonNext, 3, 3);
             this.tableLayoutPanel.Controls.Add(this.labelNbSituations, 2, 3);
@@ -214,6 +215,7 @@
             this.dataGridViewOther.TabIndex = 9;
             this.dataGridViewOther.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellEnterOther);
             this.dataGridViewOther.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellValueChangedOther);
+            this.dataGridViewOther.KeyUp += new System.Windows.Forms.KeyEventHandler(this.onKeyUpOther);
             // 
             // wordColOther
             // 
@@ -235,6 +237,7 @@
             this.buttonResult.TabIndex = 10;
             this.buttonResult.Text = "Fin";
             this.buttonResult.UseVisualStyleBackColor = true;
+            this.buttonResult.Click += new System.EventHandler(this.onClickEnd);
             // 
             // SituationsControl
             // 

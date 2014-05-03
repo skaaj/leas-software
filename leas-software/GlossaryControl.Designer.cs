@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.wordCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.levelCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lexicalCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxAddLevel = new System.Windows.Forms.TextBox();
             this.textBoxAddWord = new System.Windows.Forms.TextBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.comboBoxLexical = new System.Windows.Forms.ComboBox();
-            this.wordCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.levelCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lexicalCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +61,23 @@
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellEnter);
             this.dataGridView.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellValidated);
+            this.dataGridView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.onKeyUp);
+            // 
+            // wordCol
+            // 
+            this.wordCol.HeaderText = "Mot";
+            this.wordCol.MaxInputLength = 25;
+            this.wordCol.Name = "wordCol";
+            // 
+            // levelCol
+            // 
+            this.levelCol.HeaderText = "Niveau";
+            this.levelCol.Name = "levelCol";
+            // 
+            // lexicalCol
+            // 
+            this.lexicalCol.HeaderText = "Champs lexical";
+            this.lexicalCol.Name = "lexicalCol";
             // 
             // tableLayoutPanel
             // 
@@ -119,22 +136,6 @@
             this.comboBoxLexical.Name = "comboBoxLexical";
             this.comboBoxLexical.Size = new System.Drawing.Size(173, 21);
             this.comboBoxLexical.TabIndex = 4;
-            // 
-            // wordCol
-            // 
-            this.wordCol.HeaderText = "Mot";
-            this.wordCol.MaxInputLength = 25;
-            this.wordCol.Name = "wordCol";
-            // 
-            // levelCol
-            // 
-            this.levelCol.HeaderText = "Niveau";
-            this.levelCol.Name = "levelCol";
-            // 
-            // lexicalCol
-            // 
-            this.lexicalCol.HeaderText = "Champs lexical";
-            this.lexicalCol.Name = "lexicalCol";
             // 
             // GlossaryControl
             // 

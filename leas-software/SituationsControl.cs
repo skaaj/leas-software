@@ -13,6 +13,7 @@ namespace leas_software
     public partial class SituationsControl : UserControl
     {
         private Model model;
+        private MainForm context;
 
         private int currentSituation;
         private int situationID;
@@ -28,6 +29,7 @@ namespace leas_software
         {
             InitializeComponent();
 
+            this.context = context;
             this.model = context.Model;
 
             // Situations
@@ -90,11 +92,13 @@ namespace leas_software
             string newScore = (other) ? GetCellValueOther(row, col) : GetCellValueUser(row, col);
 
             model.UpdateAnswerScore(situationID, int.Parse(newScore), associatedWord);
+            context.NotifySaving();
         }
 
         private void WordChanged(string newWord, string oldWord, bool other)
         {
             model.UpdateAnswerWord(situationID, newWord, oldWord);
+            context.NotifySaving();
         }
 
         private string GetCellValueUser(int row, int col)
@@ -153,6 +157,7 @@ namespace leas_software
                 int score = ComputeScore(newValue);
                 model.AddAnswer(situationID, newValue, score, 0);
                 refreshGrids();
+                context.NotifySaving();
             }
             else if (newValue != cellValue)
             {
@@ -180,6 +185,7 @@ namespace leas_software
                 int score = ComputeScore(newValue);
                 model.AddAnswer(situationID, newValue, score, 1);
                 refreshGrids();
+                context.NotifySaving();
             }
             else if (newValue != cellValue)
             {
@@ -214,6 +220,33 @@ namespace leas_software
             cellValue = GetCellValueOther(e.RowIndex, e.ColumnIndex);
 
             lastRow = (e.RowIndex == dataGridViewOther.RowCount - 1) ? true : false;
+        }
+
+        private void onClickEnd(object sender, EventArgs e)
+        {
+            context.SelectResultControl();
+        }
+
+        private void onKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 46)
+            {
+                string word = GetCellValueUser(rowIndex, colIndex);
+                model.DeleteAnswer(situationID, model.CurrentUser.ID, word, 0);
+                refreshGrids();
+                context.NotifySaving();
+            }
+        }
+
+        private void onKeyUpOther(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 46)
+            {
+                string word = GetCellValueOther(rowIndex, colIndex);
+                model.DeleteAnswer(situationID, model.CurrentUser.ID, word, 1);
+                refreshGrids();
+                context.NotifySaving();
+            }
         }
     }
 }

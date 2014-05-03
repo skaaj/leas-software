@@ -39,6 +39,7 @@ namespace leas_software
             DataRowCollection lexicals = context.Model.Database.GetLexicals();
             if (lexicals == null) comboBoxLexical.Items.Add(nullLexical);
 
+            comboBoxLexical.Items.Clear();
             foreach (DataRow lexical in lexicals)
                 comboBoxLexical.Items.Add(lexical["label"].ToString());
 
@@ -61,6 +62,7 @@ namespace leas_software
             {
                 MessageBox.Show("TODO: validation " + newWord + newLevel + newLexical);
                 context.Model.AddWord(new Word(newWord, int.Parse(newLevel), newLexical));
+                context.NotifySaving();
                 RefreshData();
             }
         }
@@ -93,10 +95,14 @@ namespace leas_software
                 {
                     case Column.Word:
                         context.Model.UpdateWord(newValue, cellValue);
+                        context.NotifySaving();
                         break;
                     case Column.Level:
                         if (isLevelValid(newValue))
+                        {
                             context.Model.Database.ExecuteNonQuery(String.Format("update words set level = '{0}' WHERE label = '{1}'", newValue, dataGridView.Rows[rowIndex].Cells[(int)Column.Word].Value.ToString()));
+                            context.NotifySaving();
+                        }
                         else
                             dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = cellValue;
 
@@ -108,11 +114,23 @@ namespace leas_software
                         }
 
                         context.Model.UpdateLexical(newValue, dataGridView.Rows[rowIndex].Cells[(int)Column.Word].Value.ToString());
+                        context.NotifySaving();
                         break;
                     default:
                         MessageBox.Show("Unknown column type");
                         break;
                 }
+            }
+        }
+
+        private void onKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 46)
+            {
+                string value = dataGridView.Rows[rowIndex].Cells[0].Value.ToString();
+                context.Model.DeleteWord(value);
+                context.NotifySaving();
+                RefreshData();
             }
         }
     }

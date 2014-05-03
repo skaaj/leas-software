@@ -19,6 +19,8 @@ namespace leas_software
         private NewUserControl    newUserControl;
         private LoadUserControl   loadUserControl;
         private GlossaryControl   glossaryControl;
+        private ResultControl     resultControl;
+
         private UserControl       currentControl;
 
         public MainForm()
@@ -46,7 +48,8 @@ namespace leas_software
             splashControl    = new SplashControl();
             newUserControl   = new NewUserControl(this);
             loadUserControl  = new LoadUserControl(this);
-            glossaryControl  = new GlossaryControl(this);
+            glossaryControl = new GlossaryControl(this);
+            resultControl = new ResultControl(this);
 
             SelectControl(splashControl);
         }
@@ -68,6 +71,16 @@ namespace leas_software
             model.SetCurrentUser(id);
 
             situationControl = new SituationsControl(this);
+            SelectControl(situationControl);
+        }
+
+        public void SelectResultControl()
+        {
+            SelectControl(resultControl);
+        }
+
+        public void SelectSituationControl()
+        {
             SelectControl(situationControl);
         }
 
@@ -122,19 +135,12 @@ namespace leas_software
 
         private void toolStripButton1_Click(object sender, EventArgs e) // TODO
         {
-            NotifyWorking();
+            NotifySaving();
         }
 
-        public void NotifyWorking() // TODO
+        public void NotifySaving()
         {
-            int i = 0;
-            while (i < 100)
-            {
-                toolStripProgressBar.Value = i++;
-                System.Threading.Thread.Sleep(10);
-            }
-            if(toolStripProgressBar.Value > 90)
-                toolStripProgressBar.Value = 0;
+            toolStripButtonRefresh.Text = "Last save : " + DateTime.Now.ToLongTimeString();
         }
     }
 }

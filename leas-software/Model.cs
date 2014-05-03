@@ -63,9 +63,9 @@ namespace leas_software
             }
         }
 
-        private void LoadAnswers()
+        private void LoadAnswers(int id)
         {
-            DataRowCollection answers = database.GetAnswers();
+            DataRowCollection answers = database.GetAnswers(id);
             if (answers == null) return;
 
             foreach (DataRow answer in answers)
@@ -144,6 +144,21 @@ namespace leas_software
             }
         }
 
+        public void DeleteAnswer(int situationID, int userID, string word, int type)
+        {
+            database.ExecuteNonQuery(String.Format("delete from answers where id_situation = {0} and id_patient = {1} and word = '{2}' and type == {3}", situationID, userID, word, type));
+
+            List<Answer> la = currentUser.GetAnswersFor(situationID);
+            foreach (var a in la)
+            {
+                if (a.Word == word && a.AType == type)
+                {
+                    la.Remove(a);
+                    return;
+                }
+            }
+        }
+
         public Situation getSituation(int index)
         {
             if (index < 0 || index >= sList.Count)
@@ -192,6 +207,20 @@ namespace leas_software
 
             database.ExecuteNonQuery(String.Format("insert into words values (null, '{0}', {1}, {2})", word.Label, word.Level, lexicalID));
             wList.Add(word);
+        }
+
+        public void DeleteWord(string word)
+        {
+            database.ExecuteNonQuery(String.Format("delete from words where label = '{0}'", word));
+
+            foreach (var w in wList)
+            {
+                if (w.Label == word)
+                {
+                    wList.Remove(w);
+                    return;
+                }
+            }
         }
 
         public int UpdateWord(string newWord, string oldWord)
@@ -299,7 +328,7 @@ namespace leas_software
                 int age = int.Parse(db_results[0]["age"].ToString());
                 bool sex = (db_results[0]["sex"].ToString() == "True") ? true : false;
                 currentUser = new User(id, name, age, sex);
-                this.LoadAnswers();
+                this.LoadAnswers(id);
             }
             else
             {

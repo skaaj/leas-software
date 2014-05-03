@@ -37,9 +37,8 @@
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.buttonHelp = new System.Windows.Forms.ToolStripLabel();
-            this.container = new System.Windows.Forms.Panel();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
-            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.container = new System.Windows.Forms.Panel();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,8 +51,7 @@
             this.toolStripDropDownButton1,
             this.toolStripLabel1,
             this.buttonHelp,
-            this.toolStripButtonRefresh,
-            this.toolStripProgressBar});
+            this.toolStripButtonRefresh});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(2);
@@ -123,6 +121,16 @@
             this.buttonHelp.Size = new System.Drawing.Size(31, 36);
             this.buttonHelp.Text = "Aide";
             // 
+            // toolStripButtonRefresh
+            // 
+            this.toolStripButtonRefresh.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButtonRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRefresh.Image")));
+            this.toolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRefresh.Name = "toolStripButtonRefresh";
+            this.toolStripButtonRefresh.Size = new System.Drawing.Size(23, 33);
+            this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // container
             // 
             this.container.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -130,22 +138,6 @@
             this.container.Name = "container";
             this.container.Size = new System.Drawing.Size(584, 321);
             this.container.TabIndex = 1;
-            // 
-            // toolStripButtonRefresh
-            // 
-            this.toolStripButtonRefresh.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRefresh.Image")));
-            this.toolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonRefresh.Name = "toolStripButtonRefresh";
-            this.toolStripButtonRefresh.Size = new System.Drawing.Size(66, 33);
-            this.toolStripButtonRefresh.Text = "Refresh";
-            this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripProgressBar
-            // 
-            this.toolStripProgressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripProgressBar.Name = "toolStripProgressBar";
-            this.toolStripProgressBar.Size = new System.Drawing.Size(33, 33);
             // 
             // MainForm
             // 
@@ -175,7 +167,6 @@
         private System.Windows.Forms.ToolStripLabel buttonHelp;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton toolStripButtonRefresh;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
 
     }
 }
