@@ -13,14 +13,12 @@ namespace leas_software
         private int age;
         private bool sex;
         private int score;
-        private Dictionary<int, String> answers;
-        private Dictionary<int, String> other_answers;
+        private Dictionary<int, List<Answer>> answers;
 
         public User()
         {
             this.score = 0;
-            this.answers = new Dictionary<int, String>();
-            this.other_answers = new Dictionary<int, String>();
+            this.answers = new Dictionary<int, List<Answer>>();
         }
 
         public User(int id, string name, int age, bool sex) : this()
@@ -31,37 +29,7 @@ namespace leas_software
             this.sex = sex;
         }
 
-        public List<string> GetAnswersFor(int id)
-        {
-            string result;
-
-            if (answers.TryGetValue(id, out result))
-            {
-                List<string> output = new List<string>();
-                foreach (string a in result.Split('#'))
-                    output.Add(a);
-                return output;
-            }
-
-            return null;
-        }
-
-        public List<string> GetOAnswersFor(int id)
-        {
-            string result;
-
-            if (other_answers.TryGetValue(id, out result))
-            {
-                List<string> output = new List<string>();
-                foreach (string a in result.Split('#'))
-                    output.Add(a);
-                return output;
-            }
-
-            return null;
-        }
-
-        public Dictionary<int, String> Answers
+        public Dictionary<int, List<Answer>> Answers
         {
             get
             {
@@ -73,16 +41,12 @@ namespace leas_software
             }
         }
 
-        public Dictionary<int, String> OtherAnswers
+        public List<Answer> GetAnswersFor(int id)
         {
-            get
-            {
-                return other_answers;
-            }
-            set
-            {
-                other_answers = value;
-            }
+            if (!answers.ContainsKey(id))
+                answers.Add(id, new List<Answer>());
+
+            return answers[id];
         }
 
         public string Name

@@ -72,6 +72,9 @@ namespace leas_software
 
         private void onClick(object sender, EventArgs e)
         {
+            if (dataGridView.RowCount == 0)
+                return;
+
             int id = context.Model.Database.GetUserID(selected_name, selected_age, selected_sex);
             context.StartUserSession(id);
         }

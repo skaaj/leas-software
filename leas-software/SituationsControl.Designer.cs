@@ -35,14 +35,14 @@
             this.boxCurrentSituation = new System.Windows.Forms.TextBox();
             this.labelUserName = new System.Windows.Forms.Label();
             this.dataGridViewUser = new System.Windows.Forms.DataGridView();
+            this.wordCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scoreCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelOther = new System.Windows.Forms.Label();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewOther = new System.Windows.Forms.DataGridView();
-            this.buttonResult = new System.Windows.Forms.Button();
-            this.wordCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scoreCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wordColOther = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreColOther = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonResult = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOther)).BeginInit();
@@ -63,7 +63,7 @@
             // buttonNext
             // 
             this.buttonNext.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonNext.Location = new System.Drawing.Point(529, 385);
+            this.buttonNext.Location = new System.Drawing.Point(528, 385);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(54, 25);
             this.buttonNext.TabIndex = 1;
@@ -87,7 +87,7 @@
             this.labelNbSituations.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelNbSituations.AutoSize = true;
             this.labelNbSituations.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNbSituations.Location = new System.Drawing.Point(340, 390);
+            this.labelNbSituations.Location = new System.Drawing.Point(339, 390);
             this.labelNbSituations.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.labelNbSituations.Name = "labelNbSituations";
             this.labelNbSituations.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
@@ -98,7 +98,7 @@
             // boxCurrentSituation
             // 
             this.boxCurrentSituation.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.boxCurrentSituation.Location = new System.Drawing.Point(300, 387);
+            this.boxCurrentSituation.Location = new System.Drawing.Point(299, 387);
             this.boxCurrentSituation.Margin = new System.Windows.Forms.Padding(0);
             this.boxCurrentSituation.MaxLength = 2;
             this.boxCurrentSituation.Name = "boxCurrentSituation";
@@ -116,7 +116,7 @@
             this.labelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUserName.Location = new System.Drawing.Point(3, 33);
             this.labelUserName.Name = "labelUserName";
-            this.labelUserName.Size = new System.Drawing.Size(334, 13);
+            this.labelUserName.Size = new System.Drawing.Size(333, 13);
             this.labelUserName.TabIndex = 5;
             this.labelUserName.Text = "username";
             // 
@@ -136,9 +136,21 @@
             this.dataGridViewUser.Location = new System.Drawing.Point(3, 49);
             this.dataGridViewUser.Name = "dataGridViewUser";
             this.dataGridViewUser.RowHeadersVisible = false;
-            this.dataGridViewUser.Size = new System.Drawing.Size(334, 330);
+            this.dataGridViewUser.Size = new System.Drawing.Size(333, 330);
             this.dataGridViewUser.TabIndex = 6;
             this.dataGridViewUser.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellEnterUser);
+            this.dataGridViewUser.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellValueChanged);
+            // 
+            // wordCol
+            // 
+            this.wordCol.HeaderText = "";
+            this.wordCol.Name = "wordCol";
+            // 
+            // scoreCol
+            // 
+            this.scoreCol.FillWeight = 25F;
+            this.scoreCol.HeaderText = "";
+            this.scoreCol.Name = "scoreCol";
             // 
             // labelOther
             // 
@@ -146,9 +158,9 @@
             this.tableLayoutPanel.SetColumnSpan(this.labelOther, 3);
             this.labelOther.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOther.Location = new System.Drawing.Point(343, 33);
+            this.labelOther.Location = new System.Drawing.Point(342, 33);
             this.labelOther.Name = "labelOther";
-            this.labelOther.Size = new System.Drawing.Size(302, 13);
+            this.labelOther.Size = new System.Drawing.Size(303, 13);
             this.labelOther.TabIndex = 7;
             this.labelOther.Text = "Autre";
             // 
@@ -159,7 +171,7 @@
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel.Controls.Add(this.labelSituation, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.buttonNext, 3, 3);
             this.tableLayoutPanel.Controls.Add(this.labelNbSituations, 2, 3);
@@ -195,32 +207,13 @@
             this.tableLayoutPanel.SetColumnSpan(this.dataGridViewOther, 3);
             this.dataGridViewOther.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewOther.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridViewOther.Location = new System.Drawing.Point(343, 49);
+            this.dataGridViewOther.Location = new System.Drawing.Point(342, 49);
             this.dataGridViewOther.Name = "dataGridViewOther";
             this.dataGridViewOther.RowHeadersVisible = false;
-            this.dataGridViewOther.Size = new System.Drawing.Size(302, 330);
+            this.dataGridViewOther.Size = new System.Drawing.Size(303, 330);
             this.dataGridViewOther.TabIndex = 9;
-            // 
-            // buttonResult
-            // 
-            this.buttonResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonResult.Location = new System.Drawing.Point(589, 385);
-            this.buttonResult.Name = "buttonResult";
-            this.buttonResult.Size = new System.Drawing.Size(56, 25);
-            this.buttonResult.TabIndex = 10;
-            this.buttonResult.Text = "Fin";
-            this.buttonResult.UseVisualStyleBackColor = true;
-            // 
-            // wordCol
-            // 
-            this.wordCol.HeaderText = "";
-            this.wordCol.Name = "wordCol";
-            // 
-            // scoreCol
-            // 
-            this.scoreCol.FillWeight = 25F;
-            this.scoreCol.HeaderText = "";
-            this.scoreCol.Name = "scoreCol";
+            this.dataGridViewOther.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellEnterOther);
+            this.dataGridViewOther.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellValueChangedOther);
             // 
             // wordColOther
             // 
@@ -232,6 +225,16 @@
             this.scoreColOther.FillWeight = 25F;
             this.scoreColOther.HeaderText = "";
             this.scoreColOther.Name = "scoreColOther";
+            // 
+            // buttonResult
+            // 
+            this.buttonResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonResult.Location = new System.Drawing.Point(588, 385);
+            this.buttonResult.Name = "buttonResult";
+            this.buttonResult.Size = new System.Drawing.Size(57, 25);
+            this.buttonResult.TabIndex = 10;
+            this.buttonResult.Text = "Fin";
+            this.buttonResult.UseVisualStyleBackColor = true;
             // 
             // SituationsControl
             // 

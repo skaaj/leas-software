@@ -15,10 +15,12 @@ namespace leas_software
         private Model model;
 
         private int currentSituation;
+        private int situationID;
 
         private int rowIndex;
         private int colIndex;
         private string cellValue;
+        private bool lastRow;
 
         private enum Column { Word, Score };
 
@@ -36,72 +38,38 @@ namespace leas_software
             this.labelUserName.Text = model.CurrentUser.Name;
         }
 
-        private void LoadAnswers(int id)
-        {
-            List<string> pAnswers = model.CurrentUser.GetAnswersFor(id);
-            this.dataGridViewUser.Rows.Clear();
-
-            if (pAnswers != null)
-                foreach (string a in pAnswers)
-                    this.dataGridViewUser.Rows.Add(a);
-
-            List<string> oAnswers = model.CurrentUser.GetOAnswersFor(id);
-            this.dataGridViewOther.Rows.Clear();
-
-            if (oAnswers != null)
-                foreach (string a in oAnswers)
-                    this.dataGridViewOther.Rows.Add(a);
-        }
-
-        private void SaveModifications()
-        {
-            if (dataGridViewUser.Rows.Count > 1) // if there is something to save
-            {
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < dataGridViewUser.Rows.Count; i++)
-                {
-                    object value = dataGridViewUser.Rows[i].Cells[0].Value;
-                    if (value != null)
-                        builder.Append(value.ToString() + "#");
-                }
-
-                string concatened = builder.ToString();
-                if (concatened.Length > 1)
-                    concatened = concatened.Remove(concatened.Length - 1); // remove the last #
-
-                model.UpdateAnswers(model.getSituation(currentSituation).ID, concatened);
-            }
-
-            if (dataGridViewOther.Rows.Count > 1) // if there is something to save
-            {
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < dataGridViewOther.Rows.Count; i++)
-                {
-                    object value = dataGridViewOther.Rows[i].Cells[0].Value;
-                    if (value != null)
-                        builder.Append(value.ToString() + "#");
-                }
-
-                string concatened = builder.ToString();
-                if (concatened.Length > 1)
-                    concatened = concatened.Remove(concatened.Length - 1); // remove the last #
-
-                model.UpdateOtherAnswers(model.getSituation(currentSituation).ID, concatened);
-            }
-        }
-
         private void switchSituation(int index, bool updateNbSituation = true){
             Situation s = model.getSituation(index);
 
             if (s != null)
             {
-                SaveModifications();
+                situationID = s.ID;
 
-                LoadAnswers(s.ID);
+                refreshGrids();
+
                 this.labelSituation.Text = s.Text;
                 currentSituation = index;
 
                 refreshUI(updateNbSituation);
+            }
+        }
+
+        private void refreshGrids()
+        {
+            dataGridViewOther.Rows.Clear();
+            dataGridViewUser.Rows.Clear();
+            foreach (Answer a in model.CurrentUser.GetAnswersFor(situationID))
+            {
+                int type = a.AType;
+                switch (a.AType)
+                {
+                    case 1:
+                        dataGridViewOther.Rows.Add(a.Word, a.Score);
+                        break;
+                    default:
+                        dataGridViewUser.Rows.Add(a.Word, a.Score);
+                        break;
+                }
             }
         }
 
@@ -114,6 +82,33 @@ namespace leas_software
             }
 
             this.labelNbSituations.Text = string.Concat("/ ", model.getNbSituations());
+        }
+
+        private void ScoreChanged(int row, int col, bool other)
+        {
+            string associatedWord = (other) ? GetCellValueOther(row, col - 1) : GetCellValueUser(row, col - 1);
+            string newScore = (other) ? GetCellValueOther(row, col) : GetCellValueUser(row, col);
+
+            model.UpdateAnswerScore(situationID, int.Parse(newScore), associatedWord);
+        }
+
+        private void WordChanged(string newWord, string oldWord, bool other)
+        {
+            model.UpdateAnswerWord(situationID, newWord, oldWord);
+        }
+
+        private string GetCellValueUser(int row, int col)
+        {
+            object value = dataGridViewUser.Rows[row].Cells[col].Value;
+
+            return (value == null) ? String.Empty : value.ToString();
+        }
+
+        private string GetCellValueOther(int row, int col)
+        {
+            object value = dataGridViewOther.Rows[row].Cells[col].Value;
+
+            return (value == null) ? String.Empty : value.ToString();
         }
 
         private void onTextChanged(object sender, EventArgs e)
@@ -144,11 +139,81 @@ namespace leas_software
             table.SetBounds(table.Left, table.Top, table.Width, this.buttonNext.Top - table.Top);
         }
 
+        private int ComputeScore(string word)
+        {
+            return new Random().Next() % 4;
+        }
+
+        private void onCellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            string newValue = GetCellValueUser(e.RowIndex, e.ColumnIndex);
+
+            if (lastRow)
+            {
+                int score = ComputeScore(newValue);
+                model.AddAnswer(situationID, newValue, score, 0);
+                refreshGrids();
+            }
+            else if (newValue != cellValue)
+            {
+                switch ((Column)colIndex)
+                {
+                    case Column.Word:
+                        WordChanged(newValue, cellValue, false);
+                        break;
+                    case Column.Score:
+                        ScoreChanged(e.RowIndex, e.ColumnIndex, false);
+                        break;
+                    default:
+                        MessageBox.Show("Unknown column type");
+                        break;
+                }
+            }
+        }
+
+        private void onCellValueChangedOther(object sender, DataGridViewCellEventArgs e)
+        {
+            string newValue = GetCellValueOther(e.RowIndex, e.ColumnIndex);
+
+            if (lastRow)
+            {
+                int score = ComputeScore(newValue);
+                model.AddAnswer(situationID, newValue, score, 1);
+                refreshGrids();
+            }
+            else if (newValue != cellValue)
+            {
+                switch ((Column)colIndex)
+                {
+                    case Column.Word:
+                        WordChanged(newValue, cellValue, true);
+                        break;
+                    case Column.Score:
+                        ScoreChanged(e.RowIndex, e.ColumnIndex, true);
+                        break;
+                    default:
+                        MessageBox.Show("Unknown column type");
+                        break;
+                }
+            }
+        }
+
         private void onCellEnterUser(object sender, DataGridViewCellEventArgs e)
         {
             rowIndex = e.RowIndex;
             colIndex = e.ColumnIndex;
-            //cellValue = dataGridViewUser.Rows[rowIndex].Cells[colIndex].Value.ToString();
+            cellValue = GetCellValueUser(e.RowIndex, e.ColumnIndex);
+
+            lastRow = (e.RowIndex == dataGridViewUser.RowCount - 1) ? true : false;
+        }
+
+        private void onCellEnterOther(object sender, DataGridViewCellEventArgs e)
+        {
+            rowIndex = e.RowIndex;
+            colIndex = e.ColumnIndex;
+            cellValue = GetCellValueOther(e.RowIndex, e.ColumnIndex);
+
+            lastRow = (e.RowIndex == dataGridViewOther.RowCount - 1) ? true : false;
         }
     }
 }

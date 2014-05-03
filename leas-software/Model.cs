@@ -70,23 +70,78 @@ namespace leas_software
 
             foreach (DataRow answer in answers)
             {
-                currentUser.Answers.Add(int.Parse(answer["id_situation"].ToString()), answer["p_answers"].ToString());
-                currentUser.OtherAnswers.Add(int.Parse(answer["id_situation"].ToString()), answer["o_answers"].ToString());
+                string word = answer["word"].ToString();
+                string score = answer["score"].ToString();
+                int type = int.Parse(answer["type"].ToString());
+                int situation = int.Parse(answer["id_situation"].ToString());
+                Answer a = new Answer()
+                    {
+                        Word = word,
+                        Score = int.Parse(score),
+                        AType = type
+                    };
+
+                if (currentUser.Answers.ContainsKey(situation))
+                {
+                    currentUser.Answers[situation].Add(a);
+                }
+                else
+                {
+                    currentUser.Answers.Add(situation, new List<Answer>() { a });
+                }
             }
         }
 
-        public void UpdateAnswers(int id, string answers)
+        public void AddAnswer(int situationID, string newValue, int score, int type)
         {
-            database.ExecuteNonQuery(String.Format("update answers set p_answers = '{0}' WHERE id_patient = {1} AND id_situation = {2}", answers, currentUser.ID, id));
+            database.ExecuteNonQuery(String.Format("insert into answers values({0}, {1}, '{2}', {3}, {4})", situationID, currentUser.ID, newValue, score, type));
 
-            currentUser.Answers[id] = answers;
+            if (!currentUser.Answers.ContainsKey(situationID))
+                currentUser.Answers.Add(situationID, new List<Answer>());
+
+            currentUser.Answers[situationID].Add(
+                new Answer()
+                {
+                    Word = newValue,
+                    Score = score,
+                    AType = type
+                });
         }
 
-        public void UpdateOtherAnswers(int id, string answers)
+        public void UpdateAnswerWord(int situationID, string newValue, string oldValue)
         {
-            database.ExecuteNonQuery(String.Format("update answers set o_answers = '{0}' WHERE id_patient = {1} AND id_situation = {2}", answers, currentUser.ID, id));
+            database.ExecuteNonQuery(String.Format("update answers set word = '{0}' WHERE word = '{1}' AND id_situation = {2}", newValue, oldValue, situationID));
 
-            currentUser.OtherAnswers[id] = answers;
+            int i = 0;
+            List<Answer> aList = currentUser.Answers[situationID];
+            while (i < aList.Count)
+            {
+                if (aList[i].Word == oldValue)
+                {
+                    aList[i].Word = newValue;
+                    i = wList.Count;
+                }
+
+                i++;
+            }
+        }
+
+        public void UpdateAnswerScore(int situationID, int newValue, string word)
+        {
+            database.ExecuteNonQuery(String.Format("update answers set score = {0} WHERE word = '{1}' AND id_situation = {2}", newValue, word, situationID));
+
+            int i = 0;
+            List<Answer> aList = currentUser.Answers[situationID];
+            while (i < aList.Count)
+            {
+                if (aList[i].Word == word)
+                {
+                    aList[i].Score = newValue;
+                    i = wList.Count;
+                }
+
+                i++;
+            }
         }
 
         public Situation getSituation(int index)
