@@ -23,12 +23,17 @@ namespace leas_software
         public ResultControl(MainForm context) : this()
         {
             this.context = context;
+        }
 
+        public void RefreshGrid()
+        {
+            dataGridView1.Rows.Clear();
             int nbSituations = context.Model.getNbSituations();
             for (int i = 0; i < nbSituations; i++)
             {
                 Situation s = context.Model.getSituation(i);
-                dataGridView1.Rows.Add(s.ID, 0);
+                int total = context.Model.CurrentUser.GetTotalFor(s.ID);
+                dataGridView1.Rows.Add(s.ID, total);
             }
         }
 

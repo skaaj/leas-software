@@ -76,6 +76,7 @@ namespace leas_software
 
         public void SelectResultControl()
         {
+            resultControl.RefreshGrid();
             SelectControl(resultControl);
         }
 

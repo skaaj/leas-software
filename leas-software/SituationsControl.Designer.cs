@@ -163,7 +163,7 @@
             this.labelOther.Name = "labelOther";
             this.labelOther.Size = new System.Drawing.Size(303, 13);
             this.labelOther.TabIndex = 7;
-            this.labelOther.Text = "Autre";
+            this.labelOther.Text = "Entourage";
             // 
             // tableLayoutPanel
             // 

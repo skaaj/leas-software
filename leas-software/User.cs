@@ -49,6 +49,18 @@ namespace leas_software
             return answers[id];
         }
 
+        public int GetTotalFor(int id)
+        {
+            List<Answer> al = answers[id];
+            int sum = 0;
+            foreach (Answer a in al)
+            {
+                sum += a.Score;
+            }
+
+            return sum;
+        }
+
         public string Name
         {
             get
