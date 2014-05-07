@@ -36,8 +36,8 @@
             this.comboBoxSex = new System.Windows.Forms.ComboBox();
             this.buttonSubmit = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.labelCategory = new System.Windows.Forms.Label();
             this.numericCategory = new System.Windows.Forms.NumericUpDown();
+            this.labelCategory = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericAge)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericCategory)).BeginInit();
@@ -57,7 +57,7 @@
             // boxUserName
             // 
             this.boxUserName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.boxUserName.Location = new System.Drawing.Point(140, 21);
+            this.boxUserName.Location = new System.Drawing.Point(149, 21);
             this.boxUserName.MaxLength = 24;
             this.boxUserName.Name = "boxUserName";
             this.boxUserName.Size = new System.Drawing.Size(163, 20);
@@ -81,7 +81,7 @@
             // 
             this.numericAge.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numericAge.BackColor = System.Drawing.Color.White;
-            this.numericAge.Location = new System.Drawing.Point(140, 83);
+            this.numericAge.Location = new System.Drawing.Point(149, 83);
             this.numericAge.Maximum = new decimal(new int[] {
             200,
             0,
@@ -130,7 +130,7 @@
             this.comboBoxSex.Items.AddRange(new object[] {
             "Homme",
             "Femme"});
-            this.comboBoxSex.Location = new System.Drawing.Point(140, 144);
+            this.comboBoxSex.Location = new System.Drawing.Point(149, 144);
             this.comboBoxSex.Name = "comboBoxSex";
             this.comboBoxSex.Size = new System.Drawing.Size(163, 21);
             this.comboBoxSex.TabIndex = 5;
@@ -140,7 +140,7 @@
             // buttonSubmit
             // 
             this.buttonSubmit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonSubmit.Location = new System.Drawing.Point(123, 269);
+            this.buttonSubmit.Location = new System.Drawing.Point(132, 269);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Size = new System.Drawing.Size(198, 23);
             this.buttonSubmit.TabIndex = 6;
@@ -151,8 +151,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.16384F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.83616F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.08038F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.91962F));
             this.tableLayoutPanel1.Controls.Add(this.numericCategory, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.boxUserName, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonSubmit, 1, 4);
@@ -174,22 +174,11 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(361, 313);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
-            // labelCategory
-            // 
-            this.labelCategory.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelCategory.AutoSize = true;
-            this.labelCategory.Location = new System.Drawing.Point(3, 210);
-            this.labelCategory.Name = "labelCategory";
-            this.labelCategory.Size = new System.Drawing.Size(58, 13);
-            this.labelCategory.TabIndex = 7;
-            this.labelCategory.Text = "Catégorie :";
-            this.labelCategory.UseMnemonic = false;
-            // 
             // numericCategory
             // 
             this.numericCategory.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numericCategory.BackColor = System.Drawing.Color.White;
-            this.numericCategory.Location = new System.Drawing.Point(140, 207);
+            this.numericCategory.Location = new System.Drawing.Point(149, 207);
             this.numericCategory.Maximum = new decimal(new int[] {
             3,
             0,
@@ -203,6 +192,17 @@
             0,
             0,
             0});
+            // 
+            // labelCategory
+            // 
+            this.labelCategory.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelCategory.AutoSize = true;
+            this.labelCategory.Location = new System.Drawing.Point(3, 210);
+            this.labelCategory.Name = "labelCategory";
+            this.labelCategory.Size = new System.Drawing.Size(94, 13);
+            this.labelCategory.TabIndex = 7;
+            this.labelCategory.Text = "Catégorie sociale :";
+            this.labelCategory.UseMnemonic = false;
             // 
             // NewUserControl
             // 

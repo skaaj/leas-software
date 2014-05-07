@@ -14,6 +14,7 @@ namespace leas_software
     {
 
         private MainForm context;
+        private int sum;
 
         public ResultControl()
         {
@@ -28,19 +29,21 @@ namespace leas_software
         public void RefreshGrid()
         {
             dataGridView1.Rows.Clear();
+            sum = 0;
             int nbSituations = context.Model.getNbSituations();
             for (int i = 0; i < nbSituations; i++)
             {
                 Situation s = context.Model.getSituation(i);
                 int total = context.Model.CurrentUser.GetTotalFor(s.ID);
+                sum += total;
                 dataGridView1.Rows.Add(s.ID, total);
             }
+            labelTotal.Text = "Score total : " + sum;
         }
 
         private void onClickBack(object sender, EventArgs e)
         {
             context.SelectSituationControl();
         }
-
     }
 }

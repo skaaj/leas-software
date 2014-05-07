@@ -103,7 +103,8 @@ namespace leas_software
 
         private string GetCellValueUser(int row, int col)
         {
-            object value = dataGridViewUser.Rows[row].Cells[col].Value;
+            object value = null;
+            value = dataGridViewUser.Rows[row].Cells[col].Value;
 
             return (value == null) ? String.Empty : value.ToString();
         }
@@ -150,6 +151,8 @@ namespace leas_software
 
         private void onCellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1) return;
+
             string newValue = GetCellValueUser(e.RowIndex, e.ColumnIndex);
 
             if (lastRow)
@@ -178,6 +181,8 @@ namespace leas_software
 
         private void onCellValueChangedOther(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1) return;
+
             string newValue = GetCellValueOther(e.RowIndex, e.ColumnIndex);
 
             if (lastRow)
