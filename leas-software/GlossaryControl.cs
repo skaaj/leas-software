@@ -60,7 +60,7 @@ namespace leas_software
                 MessageBox.Show("Le nouveau mot existe déjà.");
             else
             {
-                MessageBox.Show("TODO: validation " + newWord + newLevel + newLexical);
+                //MessageBox.Show("TODO: validation " + newWord + newLevel + newLexical);
                 context.Model.AddWord(new Word(newWord, int.Parse(newLevel), newLexical));
                 context.NotifySaving();
                 RefreshData();
