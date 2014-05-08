@@ -51,6 +51,8 @@ namespace leas_software
 
         public int GetTotalFor(int id)
         {
+            if (!answers.ContainsKey(id)) return 0;
+
             List<Answer> al = answers[id];
             int sum = 0;
             foreach (Answer a in al)

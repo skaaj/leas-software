@@ -35,14 +35,14 @@
             this.boxCurrentSituation = new System.Windows.Forms.TextBox();
             this.labelUserName = new System.Windows.Forms.Label();
             this.dataGridViewUser = new System.Windows.Forms.DataGridView();
-            this.wordCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scoreCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelOther = new System.Windows.Forms.Label();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewOther = new System.Windows.Forms.DataGridView();
+            this.buttonResult = new System.Windows.Forms.Button();
+            this.wordCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scoreCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wordColOther = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreColOther = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonResult = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOther)).BeginInit();
@@ -126,7 +126,6 @@
             this.dataGridViewUser.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUser.ColumnHeadersVisible = false;
             this.dataGridViewUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.wordCol,
             this.scoreCol});
@@ -141,17 +140,6 @@
             this.dataGridViewUser.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellEnterUser);
             this.dataGridViewUser.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellValueChanged);
             this.dataGridViewUser.KeyUp += new System.Windows.Forms.KeyEventHandler(this.onKeyUp);
-            // 
-            // wordCol
-            // 
-            this.wordCol.HeaderText = "";
-            this.wordCol.Name = "wordCol";
-            // 
-            // scoreCol
-            // 
-            this.scoreCol.FillWeight = 25F;
-            this.scoreCol.HeaderText = "";
-            this.scoreCol.Name = "scoreCol";
             // 
             // labelOther
             // 
@@ -201,7 +189,6 @@
             this.dataGridViewOther.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewOther.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewOther.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewOther.ColumnHeadersVisible = false;
             this.dataGridViewOther.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.wordColOther,
             this.scoreColOther});
@@ -217,17 +204,6 @@
             this.dataGridViewOther.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellValueChangedOther);
             this.dataGridViewOther.KeyUp += new System.Windows.Forms.KeyEventHandler(this.onKeyUpOther);
             // 
-            // wordColOther
-            // 
-            this.wordColOther.HeaderText = "";
-            this.wordColOther.Name = "wordColOther";
-            // 
-            // scoreColOther
-            // 
-            this.scoreColOther.FillWeight = 25F;
-            this.scoreColOther.HeaderText = "";
-            this.scoreColOther.Name = "scoreColOther";
-            // 
             // buttonResult
             // 
             this.buttonResult.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -238,6 +214,28 @@
             this.buttonResult.Text = "Fin";
             this.buttonResult.UseVisualStyleBackColor = true;
             this.buttonResult.Click += new System.EventHandler(this.onClickEnd);
+            // 
+            // wordCol
+            // 
+            this.wordCol.HeaderText = "Mots";
+            this.wordCol.Name = "wordCol";
+            // 
+            // scoreCol
+            // 
+            this.scoreCol.FillWeight = 25F;
+            this.scoreCol.HeaderText = "Scores";
+            this.scoreCol.Name = "scoreCol";
+            // 
+            // wordColOther
+            // 
+            this.wordColOther.HeaderText = "Mots";
+            this.wordColOther.Name = "wordColOther";
+            // 
+            // scoreColOther
+            // 
+            this.scoreColOther.FillWeight = 25F;
+            this.scoreColOther.HeaderText = "Scores";
+            this.scoreColOther.Name = "scoreColOther";
             // 
             // SituationsControl
             // 
