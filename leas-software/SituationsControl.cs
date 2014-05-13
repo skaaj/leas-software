@@ -73,6 +73,13 @@ namespace leas_software
                         break;
                 }
             }
+
+            int total = model.CurrentUser.GetTotalFor(situationID);
+            int utotal = model.CurrentUser.GetUserTotalFor(situationID);
+            int ototal = model.CurrentUser.GetOtherTotalFor(situationID);
+            labelTotal.Text = "Total situation : " + total;
+            labelTotalUser.Text = "Total utilisateur : " + utotal;
+            labelTotalOther.Text = "Total entourage : " + ototal;
         }
 
         private void refreshUI(bool updateNbSituation = true)

@@ -63,6 +63,37 @@ namespace leas_software
             return sum;
         }
 
+        public int GetUserTotalFor(int id)
+        {
+            if (!answers.ContainsKey(id)) return 0;
+
+            List<Answer> al = answers[id];
+            int sum = 0;
+            foreach (Answer a in al)
+            {
+                if (a.AType != 1)
+                    sum += a.Score;
+            }
+
+            return sum;
+        }
+
+
+        public int GetOtherTotalFor(int id)
+        {
+            if (!answers.ContainsKey(id)) return 0;
+
+            List<Answer> al = answers[id];
+            int sum = 0;
+            foreach (Answer a in al)
+            {
+                if (a.AType == 1)
+                    sum += a.Score;
+            }
+
+            return sum;
+        }
+
         public string Name
         {
             get
