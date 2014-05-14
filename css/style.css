@@ -1,28 +1,99 @@
-body{
-	/*
-	background: #e7e7e7 url(../img/blur.jpg) no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;	
-    */
-    background: #e5eaee;
-	color: #6a7883;
+html{
+	height: 100%;
 }
 
-.tile{
-	background: white;
-	font-family: 'Roboto', sans-serif;
-	-moz-box-shadow: 0px 5px 20px 0px #bcc8d1;
-	-webkit-box-shadow: 0px 5px 20px 0px #bcc8d1;
-	-o-box-shadow: 0px 5px 20px 0px #bcc8d1;
-	box-shadow: 0px 5px 20px 0px #bcc8d1;
-	filter:progid:DXImageTransform.Microsoft.Shadow(color=#bcc8d1, Direction=180, Strength=20);
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	padding: 10px;
+body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: url("../img/noise_bg.png") fixed;
 }
-.margin-top{
-	margin-top: 10px;
+
+#wrapper{
+	width: 960px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+nav{
+	position:fixed;
+	background: url("../img/noise.png");
+	width:200px;
+	height: 100%;
+	float:left;
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+	color:#939699;
+	border-left: 5px solid #ddd;
+	-webkit-box-shadow: inset 0px 0px 5px 0px #000;
+    box-shadow: inset 0px 0px 10px 0px #000;
+}
+
+nav ul{
+	margin:-30px 0 0 0;
+	text-align: left;
+	font-weight: bold;
+	font-size:16px;
+	line-height: 32px;
+}
+
+li a{
+	text-decoration: none;
+	color:#939699;
+}
+
+.actived{
+	color:white;
+}
+
+#avatar{
+	margin-top: 25px;
+	margin-bottom: 12px;
+}
+
+#name{
+	margin-bottom: 12px;
+}
+
+#arrow{
+	display:block;
+	width:12px;
+	height:24px;
+	position:relative;
+	left:188px;
+	top:-168px;
+	background: url("../img/fleche.png") no-repeat;
+}
+
+section{
+	float:right;
+	width:760px;
+	font-family: 'Titillium Web', sans-serif;
+	-webkit-box-shadow: 0px 0px 10px 0px #000;
+	box-shadow: 0px 0px 10px 0px #000;
+}
+
+section div{
+	padding:10px 20px;
+}
+
+section div h1 {
+	margin:0;
+	font-size:18pt;
+}
+
+section div p{
+	margin: 10px 0;
+	font-size: 12pt;
+	text-indent: 20px;
+	text-align: justify;
+}
+
+#welcome{
+	height:128px;
+	background: white;
+}
+
+#content{
+	background: #edeef0;
 }
