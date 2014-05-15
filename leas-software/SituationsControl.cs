@@ -74,9 +74,9 @@ namespace leas_software
                 }
             }
 
-            int total = model.CurrentUser.GetTotalFor(situationID);
             int utotal = model.CurrentUser.GetUserTotalFor(situationID);
             int ototal = model.CurrentUser.GetOtherTotalFor(situationID);
+            int total = model.CurrentUser.GetTotalFor(utotal, ototal);
             labelTotal.Text = "Total situation : " + total;
             labelTotalUser.Text = "Total utilisateur : " + utotal;
             labelTotalOther.Text = "Total entourage : " + ototal;
@@ -100,6 +100,7 @@ namespace leas_software
 
             model.UpdateAnswerScore(situationID, int.Parse(newScore), associatedWord);
             context.NotifySaving();
+            refreshGrids();
         }
 
         private void WordChanged(string newWord, string oldWord, bool other)
@@ -153,7 +154,7 @@ namespace leas_software
 
         private int ComputeScore(string word)
         {
-            return new Random().Next() % 4;
+            return model.GetScoreWord(word);
         }
 
         private void onCellValueChanged(object sender, DataGridViewCellEventArgs e)

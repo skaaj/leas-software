@@ -35,10 +35,11 @@
             this.nouvelleSaisieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chargerUneSaisieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.buttonHelp = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.container = new System.Windows.Forms.Panel();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripLabel();
+            this.buttonHelp = new System.Windows.Forms.ToolStripButton();
+            this.buttonSaisie = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownButton1,
+            this.buttonSaisie,
             this.toolStripLabel1,
             this.buttonHelp,
             this.toolStripButtonRefresh});
@@ -106,20 +108,24 @@
             this.quitterToolStripMenuItem.Text = "Quitter";
             this.quitterToolStripMenuItem.Click += new System.EventHandler(this.onClickExit);
             // 
+            // container
+            // 
+            this.container.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.container.Location = new System.Drawing.Point(0, 40);
+            this.container.Name = "container";
+            this.container.Size = new System.Drawing.Size(584, 321);
+            this.container.TabIndex = 1;
+            // 
             // toolStripLabel1
             // 
+            this.toolStripLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
+            this.toolStripLabel1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel1.Margin = new System.Windows.Forms.Padding(0);
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(54, 36);
+            this.toolStripLabel1.Size = new System.Drawing.Size(58, 36);
             this.toolStripLabel1.Text = "Glossaire";
             this.toolStripLabel1.Click += new System.EventHandler(this.onClickGlossary);
-            // 
-            // buttonHelp
-            // 
-            this.buttonHelp.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Size = new System.Drawing.Size(31, 36);
-            this.buttonHelp.Text = "Aide";
             // 
             // toolStripButtonRefresh
             // 
@@ -128,16 +134,29 @@
             this.toolStripButtonRefresh.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRefresh.Image")));
             this.toolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonRefresh.Name = "toolStripButtonRefresh";
-            this.toolStripButtonRefresh.Size = new System.Drawing.Size(23, 33);
+            this.toolStripButtonRefresh.Size = new System.Drawing.Size(0, 33);
             this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // container
+            // buttonHelp
             // 
-            this.container.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.container.Location = new System.Drawing.Point(0, 40);
-            this.container.Name = "container";
-            this.container.Size = new System.Drawing.Size(584, 321);
-            this.container.TabIndex = 1;
+            this.buttonHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonHelp.Image = ((System.Drawing.Image)(resources.GetObject("buttonHelp.Image")));
+            this.buttonHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonHelp.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonHelp.Name = "buttonHelp";
+            this.buttonHelp.Size = new System.Drawing.Size(35, 36);
+            this.buttonHelp.Text = "Aide";
+            // 
+            // buttonSaisie
+            // 
+            this.buttonSaisie.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonSaisie.Image = ((System.Drawing.Image)(resources.GetObject("buttonSaisie.Image")));
+            this.buttonSaisie.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonSaisie.Name = "buttonSaisie";
+            this.buttonSaisie.Size = new System.Drawing.Size(40, 33);
+            this.buttonSaisie.Text = "Saisie";
+            this.buttonSaisie.ToolTipText = "Accéder à la saisie en cours.";
+            this.buttonSaisie.Click += new System.EventHandler(this.onClickSaisie);
             // 
             // MainForm
             // 
@@ -147,7 +166,7 @@
             this.Controls.Add(this.container);
             this.Controls.Add(this.toolStrip);
             this.Name = "MainForm";
-            this.Text = "LEAS Software ver 0.4";
+            this.Text = "LEAS Software ver 0.7";
             this.SizeChanged += new System.EventHandler(this.onSizeChanged);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
@@ -164,9 +183,10 @@
         private System.Windows.Forms.ToolStripMenuItem nouvelleSaisieToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chargerUneSaisieToolStripMenuItem;
-        private System.Windows.Forms.ToolStripLabel buttonHelp;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripButton toolStripButtonRefresh;
+        private System.Windows.Forms.ToolStripButton toolStripLabel1;
+        private System.Windows.Forms.ToolStripButton buttonHelp;
+        private System.Windows.Forms.ToolStripLabel toolStripButtonRefresh;
+        private System.Windows.Forms.ToolStripButton buttonSaisie;
 
     }
 }

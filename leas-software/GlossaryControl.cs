@@ -134,6 +134,43 @@ namespace leas_software
             }
         }
 
+        private void Search(string searchValue)
+        {
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView.Rows)
+                {
+                    if (row.Cells[0].Value.ToString().Equals(searchValue))
+                    {
+                        dataGridView.CurrentCell = row.Cells[0];
+                        break;
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void onClickSearch(object sender, EventArgs e)
+        {
+            Search(textBoxSearch.Text);
+        }
+
+        private void onValidSearch(object sender, CancelEventArgs e)
+        {
+        }
+
+        private void onKeySearch(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Search(textBoxSearch.Text);
+            }
+        }
+
 
 
     }

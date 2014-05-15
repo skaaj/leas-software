@@ -49,18 +49,18 @@ namespace leas_software
             return answers[id];
         }
 
-        public int GetTotalFor(int id)
+        public int GetTotalFor(int scoreUser, int scoreOther)
         {
-            if (!answers.ContainsKey(id)) return 0;
+            int score = 0;
 
-            List<Answer> al = answers[id];
-            int sum = 0;
-            foreach (Answer a in al)
-            {
-                sum += a.Score;
-            }
+            if (scoreUser == scoreOther && scoreUser == 4)
+                score = 5;
+            else if (scoreOther >= scoreUser)
+                score = scoreOther;
+            else if (scoreOther < scoreUser)
+                score = scoreUser;
 
-            return sum;
+            return score;
         }
 
         public int GetUserTotalFor(int id)
@@ -68,14 +68,22 @@ namespace leas_software
             if (!answers.ContainsKey(id)) return 0;
 
             List<Answer> al = answers[id];
-            int sum = 0;
+            int score = 0;
+            int nbLevel3 = 0;
             foreach (Answer a in al)
             {
                 if (a.AType != 1)
-                    sum += a.Score;
+                {
+                    if (a.Score == 3)
+                        nbLevel3++;
+                    if (a.Score > score)
+                        score = a.Score;
+                    if (nbLevel3 >= 2)
+                        score = 4;
+                }
             }
 
-            return sum;
+            return score;
         }
 
 
@@ -84,14 +92,22 @@ namespace leas_software
             if (!answers.ContainsKey(id)) return 0;
 
             List<Answer> al = answers[id];
-            int sum = 0;
+            int score = 0;
+            int nbLevel3 = 0;
             foreach (Answer a in al)
             {
                 if (a.AType == 1)
-                    sum += a.Score;
+                {
+                    if (a.Score == 3)
+                        nbLevel3++;
+                    if (a.Score > score)
+                        score = a.Score;
+                    if (nbLevel3 >= 2)
+                        score = 4;
+                }
             }
 
-            return sum;
+            return score;
         }
 
         public string Name

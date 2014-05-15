@@ -318,6 +318,14 @@ namespace leas_software
             return false;
         }
 
+        public int GetScoreWord(string w)
+        {
+            foreach (var cw in Words)
+                if (cw.Label == w)
+                    return cw.Level;
+            return 0;
+        }
+
         /* User */
         public void SetCurrentUser(int id)
         {

@@ -31,6 +31,7 @@ namespace leas_software
             /* UI */
             InitializeComponent();
             InitializeControls();
+            InvertSaisieState();
         }
 
         /* Access */
@@ -71,6 +72,7 @@ namespace leas_software
             model.SetCurrentUser(id);
 
             situationControl = new SituationsControl(this);
+            InvertSaisieState();
             SelectControl(situationControl);
         }
 
@@ -141,7 +143,18 @@ namespace leas_software
 
         public void NotifySaving()
         {
-            toolStripButtonRefresh.Text = "Last save : " + DateTime.Now.ToLongTimeString();
+            toolStripButtonRefresh.Text = "Dernière sauvegarde : " + DateTime.Now.ToLongTimeString();
+        }
+
+        public void InvertSaisieState()
+        {
+            buttonSaisie.Enabled = !buttonSaisie.Enabled;
+        }
+
+        private void onClickSaisie(object sender, EventArgs e)
+        {
+            if (situationControl == null) return;
+            SelectControl(situationControl);
         }
     }
 }

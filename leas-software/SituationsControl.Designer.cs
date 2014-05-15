@@ -43,8 +43,8 @@
             this.wordColOther = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreColOther = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonResult = new System.Windows.Forms.Button();
-            this.labelTotalUser = new System.Windows.Forms.Label();
             this.labelTotal = new System.Windows.Forms.Label();
+            this.labelTotalUser = new System.Windows.Forms.Label();
             this.labelTotalOther = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUser)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
@@ -56,11 +56,11 @@
             this.labelSituation.AutoSize = true;
             this.tableLayoutPanel.SetColumnSpan(this.labelSituation, 5);
             this.labelSituation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelSituation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSituation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.labelSituation.Location = new System.Drawing.Point(3, 0);
             this.labelSituation.Margin = new System.Windows.Forms.Padding(3, 0, 3, 20);
             this.labelSituation.Name = "labelSituation";
-            this.labelSituation.Size = new System.Drawing.Size(642, 15);
+            this.labelSituation.Size = new System.Drawing.Size(642, 17);
             this.labelSituation.TabIndex = 0;
             this.labelSituation.Text = "labelSituation";
             // 
@@ -118,7 +118,7 @@
             this.tableLayoutPanel.SetColumnSpan(this.labelUserName, 2);
             this.labelUserName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUserName.Location = new System.Drawing.Point(3, 35);
+            this.labelUserName.Location = new System.Drawing.Point(3, 37);
             this.labelUserName.Name = "labelUserName";
             this.labelUserName.Size = new System.Drawing.Size(333, 13);
             this.labelUserName.TabIndex = 5;
@@ -136,10 +136,10 @@
             this.tableLayoutPanel.SetColumnSpan(this.dataGridViewUser, 2);
             this.dataGridViewUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewUser.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridViewUser.Location = new System.Drawing.Point(3, 51);
+            this.dataGridViewUser.Location = new System.Drawing.Point(3, 53);
             this.dataGridViewUser.Name = "dataGridViewUser";
             this.dataGridViewUser.RowHeadersVisible = false;
-            this.dataGridViewUser.Size = new System.Drawing.Size(333, 300);
+            this.dataGridViewUser.Size = new System.Drawing.Size(333, 298);
             this.dataGridViewUser.TabIndex = 6;
             this.dataGridViewUser.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellEnterUser);
             this.dataGridViewUser.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellValueChanged);
@@ -162,11 +162,11 @@
             this.tableLayoutPanel.SetColumnSpan(this.labelOther, 3);
             this.labelOther.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOther.Location = new System.Drawing.Point(342, 35);
+            this.labelOther.Location = new System.Drawing.Point(342, 37);
             this.labelOther.Name = "labelOther";
             this.labelOther.Size = new System.Drawing.Size(303, 13);
             this.labelOther.TabIndex = 7;
-            this.labelOther.Text = "Entourage";
+            this.labelOther.Text = "Autre";
             // 
             // tableLayoutPanel
             // 
@@ -214,10 +214,10 @@
             this.tableLayoutPanel.SetColumnSpan(this.dataGridViewOther, 3);
             this.dataGridViewOther.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewOther.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridViewOther.Location = new System.Drawing.Point(342, 51);
+            this.dataGridViewOther.Location = new System.Drawing.Point(342, 53);
             this.dataGridViewOther.Name = "dataGridViewOther";
             this.dataGridViewOther.RowHeadersVisible = false;
-            this.dataGridViewOther.Size = new System.Drawing.Size(303, 300);
+            this.dataGridViewOther.Size = new System.Drawing.Size(303, 298);
             this.dataGridViewOther.TabIndex = 9;
             this.dataGridViewOther.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellEnterOther);
             this.dataGridViewOther.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.onCellValueChangedOther);
@@ -245,16 +245,6 @@
             this.buttonResult.UseVisualStyleBackColor = true;
             this.buttonResult.Click += new System.EventHandler(this.onClickEnd);
             // 
-            // labelTotalUser
-            // 
-            this.labelTotalUser.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelTotalUser.AutoSize = true;
-            this.labelTotalUser.Location = new System.Drawing.Point(342, 361);
-            this.labelTotalUser.Name = "labelTotalUser";
-            this.labelTotalUser.Size = new System.Drawing.Size(84, 13);
-            this.labelTotalUser.TabIndex = 11;
-            this.labelTotalUser.Text = "Total utilisateur :";
-            // 
             // labelTotal
             // 
             this.labelTotal.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -266,6 +256,16 @@
             this.labelTotal.TabIndex = 12;
             this.labelTotal.Text = "Total situation :";
             // 
+            // labelTotalUser
+            // 
+            this.labelTotalUser.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelTotalUser.AutoSize = true;
+            this.labelTotalUser.Location = new System.Drawing.Point(342, 361);
+            this.labelTotalUser.Name = "labelTotalUser";
+            this.labelTotalUser.Size = new System.Drawing.Size(62, 13);
+            this.labelTotalUser.TabIndex = 11;
+            this.labelTotalUser.Text = "Total sujet :";
+            // 
             // labelTotalOther
             // 
             this.labelTotalOther.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -273,9 +273,9 @@
             this.tableLayoutPanel.SetColumnSpan(this.labelTotalOther, 2);
             this.labelTotalOther.Location = new System.Drawing.Point(528, 361);
             this.labelTotalOther.Name = "labelTotalOther";
-            this.labelTotalOther.Size = new System.Drawing.Size(88, 13);
+            this.labelTotalOther.Size = new System.Drawing.Size(64, 13);
             this.labelTotalOther.TabIndex = 13;
-            this.labelTotalOther.Text = "Total entourage :";
+            this.labelTotalOther.Text = "Total autre :";
             // 
             // SituationsControl
             // 

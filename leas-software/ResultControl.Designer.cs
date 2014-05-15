@@ -31,10 +31,10 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.situationCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreTotalCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonBack = new System.Windows.Forms.Button();
-            this.labelTotal = new System.Windows.Forms.Label();
             this.scoreUserCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreTotalOtherCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonBack = new System.Windows.Forms.Button();
+            this.labelTotal = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -45,6 +45,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.situationCol,
@@ -55,9 +56,8 @@
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(706, 339);
+            this.dataGridView1.Size = new System.Drawing.Size(494, 275);
             this.dataGridView1.TabIndex = 0;
             // 
             // situationCol
@@ -72,28 +72,6 @@
             this.scoreTotalCol.Name = "scoreTotalCol";
             this.scoreTotalCol.ReadOnly = true;
             // 
-            // buttonBack
-            // 
-            this.buttonBack.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonBack.Location = new System.Drawing.Point(3, 362);
-            this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(706, 23);
-            this.buttonBack.TabIndex = 1;
-            this.buttonBack.Text = "Retourner à la saisie";
-            this.buttonBack.UseVisualStyleBackColor = true;
-            this.buttonBack.Click += new System.EventHandler(this.onClickBack);
-            // 
-            // labelTotal
-            // 
-            this.labelTotal.AutoSize = true;
-            this.labelTotal.Dock = System.Windows.Forms.DockStyle.Left;
-            this.labelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotal.Location = new System.Drawing.Point(3, 342);
-            this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(52, 17);
-            this.labelTotal.TabIndex = 2;
-            this.labelTotal.Text = "Total : ";
-            // 
             // scoreUserCol
             // 
             this.scoreUserCol.HeaderText = "Score total utilisateur";
@@ -106,9 +84,31 @@
             this.scoreTotalOtherCol.Name = "scoreTotalOtherCol";
             this.scoreTotalOtherCol.ReadOnly = true;
             // 
+            // buttonBack
+            // 
+            this.buttonBack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonBack.Location = new System.Drawing.Point(3, 310);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(494, 23);
+            this.buttonBack.TabIndex = 1;
+            this.buttonBack.Text = "Retourner à la saisie";
+            this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.onClickBack);
+            // 
+            // labelTotal
+            // 
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotal.Location = new System.Drawing.Point(3, 284);
+            this.labelTotal.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(494, 17);
+            this.labelTotal.TabIndex = 2;
+            this.labelTotal.Text = "Total : ";
+            // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.buttonBack, 0, 2);
@@ -121,7 +121,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(712, 388);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(500, 336);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // ResultControl
@@ -130,12 +130,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ResultControl";
-            this.Size = new System.Drawing.Size(712, 388);
+            this.Size = new System.Drawing.Size(500, 336);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
