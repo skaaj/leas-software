@@ -16,7 +16,7 @@ namespace leas_software
 
         public Model()
         {
-            database = new DatabaseAdapter("../../leas_db.s3db;UseUTF8Encoding=True;");
+            database = new DatabaseAdapter("leas_db.s3db;UseUTF8Encoding=True;");
             this.LoadSituations();
             this.LoadWords();
         }
