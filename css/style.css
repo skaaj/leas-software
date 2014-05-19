@@ -15,6 +15,10 @@ body{
 	margin: 0 auto;
 }
 
+#name{
+	margin:40px 0px; 
+}
+
 nav{
 	position:fixed;
 	background: url("../img/noise.png");
@@ -33,13 +37,18 @@ nav ul{
 	margin:-30px 0 0 0;
 	text-align: left;
 	font-weight: bold;
-	font-size:16px;
+	font-size:14px;
 	line-height: 32px;
 }
 
 li a{
 	text-decoration: none;
 	color:#939699;
+}
+
+span.title{
+	font-size:16px;
+	margin-left:-20px;
 }
 
 .actived{
@@ -65,6 +74,10 @@ li a{
 	background: url("../img/fleche.png") no-repeat;
 }
 
+#placeholder{
+	height:700px;
+}
+
 section{
 	float:right;
 	width:760px;
@@ -75,11 +88,17 @@ section{
 
 section div{
 	padding:10px 20px;
+	background: #edeef0;
 }
 
 section div h1 {
 	margin:0;
 	font-size:18pt;
+}
+
+section div h2 {
+	margin:0;
+	font-size:14pt;
 }
 
 section div p{
@@ -90,10 +109,5 @@ section div p{
 }
 
 #welcome{
-	height:128px;
 	background: white;
-}
-
-#content{
-	background: #edeef0;
 }
