@@ -13,5 +13,4 @@ Le logiciel est pour le moment seulement disponible en français.
 AUTHORS
 -------
 * Benjamin Denom
-* Matthieu Fuchs
 * Gwendal Le Squer
